@@ -1,0 +1,347 @@
+x-default-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "5"
+
+x-backend-environment: &backend-environment
+  DATABASE_URL: postgresql://${POSTGRES_USER:-narchi}:${POSTGRES_PASSWORD}@pgbouncer:5432/${POSTGRES_DB:-narchi_v3}
+  DB_USE_PGBOUNCER: "true"
+  REDIS_URL: redis://redis:6379/0
+  SECRET_KEY: ${SECRET_KEY:?SECRET_KEY is required}
+  LEGACY_SHA256_SALT: ${LEGACY_SHA256_SALT:?LEGACY_SHA256_SALT is required}
+  OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+  LLM_CLOUD_ENABLED: ${LLM_CLOUD_ENABLED:-false}
+  OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-}
+  LLM_MODEL: ${LLM_MODEL:-llama3.2:3b}
+  STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
+  STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-}
+  SENTRY_DSN: ${SENTRY_DSN:-}
+  ENVIRONMENT: production
+  APP_VERSION: ${APP_VERSION:-5.0.0-PROD}
+  LOG_LEVEL: ${LOG_LEVEL:-INFO}
+  TZ: Europe/Paris
+  NARCHI_SEED_DEFAULT_ADMINS: ${NARCHI_SEED_DEFAULT_ADMINS:-false}
+  NARCHI_ADMIN_EMAIL: ${NARCHI_ADMIN_EMAIL:-admin@narchi.de}
+  NARCHI_ADMIN_PASSWORD: ${NARCHI_ADMIN_PASSWORD:-}
+  NARCHI_OWNER_EMAIL: ${NARCHI_OWNER_EMAIL:-owner@narchi.io}
+  NARCHI_OWNER_PASSWORD: ${NARCHI_OWNER_PASSWORD:-}
+  # Auto-guérison : ré-aligne les comptes bootstrap sur le .env à chaque
+  # démarrage du backend (cf. app/core/security/admin.py).
+  NARCHI_SYNC_BOOTSTRAP_PASSWORDS: ${NARCHI_SYNC_BOOTSTRAP_PASSWORDS:-true}
+  # §46 — Serverseitige Terminerinnerungen (worker rappels calendrier)
+  REMINDER_WORKER_ENABLED: ${REMINDER_WORKER_ENABLED:-true}
+  REMINDER_POLL_SECONDS: ${REMINDER_POLL_SECONDS:-60}
+  # Canal E-MAIL (optionnel — sans SMTP_HOST l'app affiche honnêtement
+  # « E-Mail nicht konfiguriert » et les rappels restent in-app + web) :
+  SMTP_HOST: ${SMTP_HOST:-}
+  SMTP_PORT: ${SMTP_PORT:-587}
+  SMTP_USER: ${SMTP_USER:-}
+  SMTP_PASSWORD: ${SMTP_PASSWORD:-}
+  SMTP_FROM: ${SMTP_FROM:-}
+  SMTP_USE_TLS: ${SMTP_USE_TLS:-true}
+
+services:
+  # §51 — Image locale Debian/glibc : postgres 16 + extension pgvector (RAG)
+  # + pgBackRest (sauvegardes physiques + WAL → PITR). NE PAS remonter le
+  # volume postgres_v6_data (créé par l'image alpine historique/musl : collations
+  # d'index incompatibles) — DEPLOY_PROD.ps1 migre v6 → v7 par dump automatique.
+  db:
+    build:
+      context: ./infra/postgres
+      dockerfile: Dockerfile
+    image: narchi-postgres:16-pgvector-pgbackrest
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-narchi}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
+      POSTGRES_DB: ${POSTGRES_DB:-narchi_v3}
+      TZ: Europe/Paris
+      NARCHI_BACKUP_CRON_ENABLED: ${NARCHI_BACKUP_CRON_ENABLED:-true}
+    expose: ["5432"]
+    volumes:
+      - postgres_v7_data:/var/lib/postgresql/data
+      - pgbackrest_v1_data:/var/lib/pgbackrest
+      # §113 — copie « parachute » VISIBLE : scripts (lecture seule) +
+      # dossier ./sauvegardes monté = les exports .sql.gz apparaissent
+      # dans l'Explorateur Windows et SURVIVENT à « 4_TOUT_EFFACER »
+      # (qui supprime les volumes Docker, y compris pgbackrest_v1_data).
+      - ./infra/backups:/narchi-backup:ro
+      - ./sauvegardes:/sauvegardes
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-narchi} -d ${POSTGRES_DB:-narchi_v3}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    logging: *default-logging
+    mem_limit: 2g
+    cpus: 2.0
+
+  # ------------------------------------------------------------------
+  # AUTO-GUERISON DU MOT DE PASSE (one-shot)
+  # ------------------------------------------------------------------
+  # Un volume PostgreSQL conserve le mot de passe grave a son tout premier
+  # demarrage ; le .env peut changer entre deux deploiements (nouveau
+  # telechargement du projet = nouveau mot de passe aleatoire genere par
+  # scripts/Initialize-NarchiEnv.ps1). Ce service re-aligne la base sur le
+  # mot de passe ACTUEL du .env via la connexion loopback de confiance
+  # (pg_hba : "host all all 127.0.0.1/32 trust", fournie par l'image
+  # postgres officielle). Il s'execute avant pgbouncer et migrate : le
+  # blocage "password authentication failed for user narchi" ne peut plus
+  # se produire, quel que soit l'historique du volume.
+  # §55 — Image LOCALE narchi-postgres (toujours présente après le build
+  # [4/8]) avec `psql` en entrypoint direct : plus AUCUNE dépendance à
+  # l'image alpine externe, qui peut manquer dans Docker Desktop (échec
+  # réel remonté le 07/08/2026 : « No such image »).
+  db-password-sync:
+    image: narchi-postgres:16-pgvector-pgbackrest
+    entrypoint: ["psql"]
+    network_mode: "service:db"
+    restart: "no"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >
+      -h 127.0.0.1 -U ${POSTGRES_USER:-narchi} -d postgres -v ON_ERROR_STOP=1
+      -c "ALTER USER \"${POSTGRES_USER:-narchi}\" WITH PASSWORD '${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}';"
+    logging: *default-logging
+    mem_limit: 128m
+    cpus: 0.5
+
+  pgbouncer:
+    image: edoburu/pgbouncer:v1.24.1-p1
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+      db-password-sync:
+        condition: service_completed_successfully
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: ${POSTGRES_USER:-narchi}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
+      DB_NAME: ${POSTGRES_DB:-narchi_v3}
+      AUTH_TYPE: scram-sha-256
+      POOL_MODE: transaction
+      MAX_CLIENT_CONN: 500
+      DEFAULT_POOL_SIZE: 30
+      MIN_POOL_SIZE: 5
+      RESERVE_POOL_SIZE: 5
+    expose: ["5432"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -p 5432 -U ${POSTGRES_USER:-narchi} -d ${POSTGRES_DB:-narchi_v3}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    logging: *default-logging
+    mem_limit: 256m
+    cpus: 0.5
+
+  redis:
+    # §248 — pin 7.4.2 (pas le tag flottant 7-alpine). Cache seulement :
+    # volume recyclable sans toucher PostgreSQL.
+    image: redis:7.4.2-alpine
+    restart: unless-stopped
+    expose: ["6379"]
+    volumes:
+      - redis_v5_data:/data
+    command: >-
+      redis-server --appendonly yes --appendfsync everysec
+      --aof-load-truncated yes
+      --maxmemory 256mb --maxmemory-policy volatile-lru
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -h 127.0.0.1 ping | grep -q PONG"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+    logging: *default-logging
+    mem_limit: 512m
+    cpus: 0.5
+
+  # §51 — Le serveur vectoriel externe (Qdrant) est SUPPRIMÉ : les embeddings
+  # RAG vivent désormais dans PostgreSQL via l'extension pgvector (image db).
+  # Un service de moins à nourrir : RAM libérée, surface d'attaque réduite.
+
+  migrate:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      args:
+        REQUIREMENTS_FILE: requirements-api.txt
+    command: python -m app.scripts.run_migrations
+    restart: "no"
+    depends_on:
+      pgbouncer:
+        condition: service_healthy
+    environment:
+      <<: *backend-environment
+      NARCHI_SERVICE_NAME: narchi-migrate
+    volumes:
+      - narchi_storage:/app/storage
+    logging: *default-logging
+    mem_limit: 512m
+    cpus: 1.0
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      args:
+        REQUIREMENTS_FILE: requirements-api.txt
+    restart: unless-stopped
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+    environment:
+      <<: *backend-environment
+      NARCHI_SERVICE_NAME: narchi-backend
+    expose: ["8000"]
+    volumes:
+      - narchi_storage:/app/storage
+      # §133 — export des FICHIERS : le service backend est le seul à voir
+      # à la fois le volume de médias (/app/storage) ET le dossier
+      # ./sauvegardes (copies visibles). Scripts en lecture seule.
+      - ./infra/backups:/narchi-backup:ro
+      - ./sauvegardes:/sauvegardes
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:8000/health >/dev/null"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    logging: *default-logging
+    mem_limit: 2g
+    cpus: 2.0
+
+  worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: >-
+      celery -A app.core.celery_app worker --loglevel=info
+      --concurrency=2 --max-tasks-per-child=50
+    restart: unless-stopped
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+    environment:
+      <<: *backend-environment
+      NARCHI_SERVICE_NAME: narchi-worker
+    volumes:
+      - narchi_storage:/app/storage
+    healthcheck:
+      test: ["CMD", "celery", "-A", "app.core.celery_app", "inspect", "ping"]
+      interval: 60s
+      timeout: 15s
+      retries: 3
+      start_period: 45s
+    logging: *default-logging
+    mem_limit: 4g
+    cpus: 2.0
+
+  flower:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      args:
+        REQUIREMENTS_FILE: requirements-api.txt
+    command: >-
+      celery -A app.core.celery_monitor flower --port=5555
+      --basic-auth=${FLOWER_BASIC_AUTH:?FLOWER_BASIC_AUTH is required}
+    restart: unless-stopped
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      <<: *backend-environment
+      NARCHI_SERVICE_NAME: narchi-flower
+    ports:
+      - "127.0.0.1:${FLOWER_HOST_PORT:-5555}:5555"
+    logging: *default-logging
+    mem_limit: 256m
+    cpus: 0.5
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+      # §119 — HTTPS local (optionnel, étape 4) : nginx n'écoute sur 8443
+      # QUE si infra/tls/enabled/ contient le bloc TLS (script
+      # 8_ACTIVER_HTTPS_LOCAL.bat). Vide = rien n'écoute, rien ne casse.
+      - "${NARCHI_HTTPS_LOCAL_PORT:-8443}:8443"
+    volumes:
+      # §119 — certificats mkcert locaux (gitignore, jamais dans git) et
+      # bascule d'activation : dossiers livrés VIDES dans le dépôt.
+      - ./infra/tls/certs:/etc/nginx/tls:ro
+      - ./infra/tls/enabled:/etc/nginx/tls-enabled:ro
+    depends_on:
+      backend:
+        condition: service_healthy
+    logging: *default-logging
+    mem_limit: 256m
+    cpus: 0.5
+
+  prometheus:
+    image: prom/prometheus:v3.5.0
+    restart: unless-stopped
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --storage.tsdb.retention.time=30d
+    volumes:
+      - ./infra/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_v5_data:/prometheus
+    expose: ["9090"]
+    depends_on:
+      backend:
+        condition: service_healthy
+    logging: *default-logging
+    mem_limit: 1g
+    cpus: 1.0
+
+  grafana:
+    image: grafana/grafana:12.1.0
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3001:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?GRAFANA_ADMIN_PASSWORD is required}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_AUTH_ANONYMOUS_ENABLED: "false"
+    volumes:
+      - ./infra/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./infra/grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - grafana_v5_data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    logging: *default-logging
+    mem_limit: 512m
+    cpus: 1.0
+
+volumes:
+  # V7 : nouveau volume PostgreSQL lié au changement d'image §51
+  # (image alpine /musl → image pgvector Debian/glibc). Les collations
+  # d'index diffèrent entre musl et glibc : remonter l'ancien volume rendrait
+  # les index texte silencieusement faux. DEPLOY_PROD.ps1 détecte un volume
+  # postgres_v6_data résiduel et migre ses données vers v7 par pg_dump
+  # automatiquement au premier déploiement. Le volume v6 n'est volontairement
+  # PLUS DÉCLARÉ ici (protection : jamais touché par `down -v`) ; l'ancien
+  # volume qdrant_v5_data peut être supprimé à la main s'il existe encore.
+  postgres_v7_data:
+  # §51 — Dépôt pgBackRest : sauvegardes full/incr + WAL archivés en continu
+  # (restauration point-in-time, rétention 2 sauvegardes complètes).
+  pgbackrest_v1_data:
+  redis_v5_data:
+  narchi_storage:
+  prometheus_v5_data:
+  grafana_v5_data:

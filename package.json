@@ -1,0 +1,24 @@
+{
+  "name": "narchi-monorepo",
+  "version": "5.0.0",
+  "private": true,
+  "scripts": {
+    "build:web": "nx build web",
+    "test:web": "nx test web",
+    "e2e:web": "nx e2e web",
+    "start": "docker compose up -d"
+  },
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "devDependencies": {
+    "nx": "latest"
+  },
+  "dependencies": {
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "three": "^0.185.1",
+    "web-ifc": "^0.0.77"
+  }
+}

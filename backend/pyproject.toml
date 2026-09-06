@@ -1,0 +1,57 @@
+[tool.bandit]
+exclude_dirs = ["tests", "alembic", "app/migrations", "data"]
+skips = ["B101"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-ra"
+filterwarnings = [
+  "ignore::Warning:fastapi.testclient",
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+exclude = ["alembic/versions", "app/migrations"]
+
+[tool.ruff.lint]
+# Barrière CI centrée sur les erreurs certaines (syntaxe, noms non définis,
+# imports étoile invalides). Le style est formaté progressivement hors audit.
+select = ["E9", "F63", "F7", "F82"]
+
+[tool.mutmut]
+# §144/§148 — mutation testing (mutmut, BSD-3) : « teste tes tests ».
+# Gate SÉPARÉ — jamais dans la suite normale. DETTE D'INTÉGRATION documentée
+# (§144 puis mesurée §148) :
+#   * source_paths ciblé → les imports « app.* » cassent dans mutants/ ;
+#   * source_paths=["app"] → les imports résolvent mais mutmut génère des
+#     MILLIERS de mutants (timeout 13 min dans le sandbox 2 Go, génération
+#     seule jamais terminée).
+# Conclusion honnête (§148) : le run mutation nécessite une machine dédiée
+# (CI hébergée, >2 Go RAM + temps) — préparé, jamais exécuté à bout. La
+# config cible xrechnung.py (le cœur monétaire) pour un futur run CI.
+source_paths = ["app/services/xrechnung.py"]
+runner = "cd /home/user/2Narchi/backend && python -m pytest tests/test_xrechnung.py tests/test_hypothesis_monetaire.py tests/test_money_centime.py -q"
+
+[tool.mypy]
+# §147 — typage statique (mypy, MIT) : gate SÉPARÉ (jamais dans la suite
+# normale — le typage de TOUT le backend est une dette héritée). On vérifie
+# le CŒUR MÉTIER MONÉTAIRE (fichiers écrits/maintenus avec soin §114–§146).
+# Le mode STRICT est exécuté par scripts/verifier-mypy.sh (flags en ligne de
+# commande — plus rapide et reproductible que cette config) ; ici on garde une
+# base légère pour les IDE.
+python_version = "3.11"
+ignore_missing_imports = true        # libs tierces sans stubs (reportlab, pycrdt…)
+follow_imports = "skip"              # ne pas descendre dans les imports lourds
+explicit_package_bases = true
+check_untyped_defs = true
+warn_unused_ignores = true
+files = [
+    "app/services/money.py",
+    "app/services/xrechnung.py",
+    "app/services/ubl.py",
+    "app/services/versand.py",
+    "app/services/offer_compare.py",
+    "app/services/lv_positions.py",
+]

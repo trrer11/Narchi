@@ -1,0 +1,137 @@
+name: Security gates
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "17 3 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  python-quality-security:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: backend/requirements*.txt
+      - name: Install application and development dependencies
+        run: python -m pip install -r requirements.txt -r requirements-dev.txt
+      - name: Python tests
+        run: python -m pytest -q
+      - name: Ruff correctness checks
+        run: ruff check app tests
+      - name: Bandit SAST
+        run: bandit -c pyproject.toml -r app
+      # §142 — Règles Semgrep MAISON (interdits §60) : ERROR bloquant (XSS),
+      # WARNING affiché (x-forwarded audit, float à trier). Le script est le
+      # même que localement (scripts/verifier-semgrep.sh). PRÉPARÉ (non
+      # exécuté depuis GitHub) — preuve locale : 0 finding ERROR.
+      - name: Semgrep règles maison (§60)
+        run: bash scripts/verifier-semgrep.sh
+      - name: Python CVE audit
+        run: pip-audit -r requirements.txt
+
+  frontend-quality-security:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm audit --audit-level=high
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+
+  trivy-filesystem-security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Scan repository for vulnerabilities, secrets and misconfiguration
+        # trivy-action épinglé par SHA complet (v0.35.0) — les tags SANS préfixe
+        # « v » (0.0.1–0.34.2 dont @0.28.0) ont été compromis puis supprimés par
+        # Aqua Security (avis GHSA-69fq-xp46-6x23) : ne jamais les réutiliser.
+        uses: aquasecurity/trivy-action@57a97c7e7821a5776cebc9bb87c984fa69cba8f1
+        with:
+          scan-type: fs
+          scan-ref: .
+          scanners: vuln,secret,misconfig
+          severity: CRITICAL,HIGH
+          ignore-unfixed: true
+          # Dossiers de build/junk absents du dépôt GitHub mais présents
+          # dans les sandboxes de développement — exclus pour un résultat
+          # identique entre CI et vérification locale.
+          skip-dirs: node_modules,.venv,dist,.git
+          exit-code: 1
+
+  gitleaks-secret-scan:
+    # §141 — Verrou « jamais de secret versionné » (gitleaks, MIT).
+    # Le script exécuté est le MÊME que celui rejoué localement
+    # (scripts/verifier-gitleaks.sh, SHA-256 épinglé) — pas une action tierce.
+    # PRÉPARÉ : ce job n'a pas encore tourné depuis GitHub (le sandbox ne
+    # déclenche pas de run distant) — la preuve locale est exit 0.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scan secrets (gitleaks, config .gitleaks.toml)
+        run: bash scripts/verifier-gitleaks.sh
+
+  checkov-iac:
+    # §143 — Scan IaC (checkov, Apache-2.0) des Dockerfiles. PRÉPARÉ (non
+    # exécuté depuis GitHub) — preuve locale : 0 FAILED (skips documentés).
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install checkov
+        run: pip install checkov
+      - name: Scan IaC (checkov, Dockerfiles)
+        run: bash scripts/verifier-checkov.sh
+
+  sbom-grype:
+    # §146 — SBOM (syft) + scan CVE (grype), tous deux Apache-2.0. PRÉPARÉ
+    # (non exécuté depuis GitHub) — preuve locale : 0 CVE HIGH/CRITICAL après
+    # le bump pypdf 6.14.2→6.16.1 (2 Medium trouvés puis corrigés).
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: SBOM + scan CVE (syft + grype)
+        run: bash scripts/verifier-sbom-grype.sh
+
+
+
+  owasp-dependency-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: OWASP Dependency-Check
+        run: |
+          mkdir -p security-reports/dependency-check
+          docker run --rm \
+            -v "$PWD:/src:ro" \
+            -v "$PWD/security-reports/dependency-check:/report" \
+            owasp/dependency-check:12.2.2 \
+            --project NARCHI-V5 \
+            --scan /src/backend --scan /src/frontend \
+            --format HTML --format JSON --out /report --failOnCVSS 7
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: owasp-dependency-check-report
+          path: security-reports/dependency-check
+          retention-days: 14

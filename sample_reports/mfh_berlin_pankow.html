@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8">
+<title>Kostenermittlung DIN 276 – MFH Berlin-Pankow, 18 WE</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", Calibri, sans-serif; color:#222; max-width:1100px; margin:24px auto; padding:0 16px; }
+  h1 { background:#1F4E78; color:#fff; padding:14px 20px; font-size:18px; margin:0 0 0 0; border-radius:6px 6px 0 0;}
+  h2 { background:#305496; color:#fff; padding:8px 14px; font-size:14px; margin:24px 0 0 0; border-radius:6px 6px 0 0;}
+  .grid { display:grid; grid-template-columns: 240px 1fr; gap:0; border:1px solid #d0d7e2; border-top:none; border-radius:0 0 6px 6px;}
+  .grid > div { padding:6px 12px; border-bottom:1px solid #eef2f7; font-size:13px;}
+  .grid > div.k { background:#D9E1F2; font-weight:bold;}
+  table { width:100%; border-collapse:collapse; font-size:12px;}
+  th, td { padding:6px 8px; border:1px solid #cfd6df;}
+  th { background:#305496; color:#fff; text-align:left;}
+  td.kg { background:#D9E1F2; font-weight:bold; text-align:center;}
+  td.r { text-align:right; font-variant-numeric: tabular-nums;}
+  td.c { text-align:center;}
+  td.b { font-weight:bold;}
+  td.small { font-size:11px; color:#666;}
+  .sum { background:#FCE4D6; font-weight:bold;}
+  .warn { background:#fff7e0; border:1px solid #f0c14b; padding:10px 14px; margin-top:18px; border-radius:6px; font-size:13px;}
+  .meta { font-size:11px; color:#666; margin-top:24px; border-top:1px solid #ddd; padding-top:12px;}
+  .ki { background:#E2EFDA; padding:10px 14px; border-radius:6px; margin-top:12px; font-size:13px;}
+</style></head>
+<body>
+
+<h1>Kostenermittlung nach DIN 276:2018-12 – MFH Berlin-Pankow, 18 WE</h1>
+<div class="grid">
+  <div class="k">Gebäudeart</div><div>Mehrfamilienhaus / Mehrgeschossiger Wohnungsbau <code>[wohngebaeude_mfh]</code></div>
+  <div class="k">Qualitätsstandard</div><div>standard_mittel</div>
+  <div class="k">Standort</div><div>Berlin – Berlin</div>
+  <div class="k">Regionalfaktor</div><div>1.134</div>
+  <div class="k">Kostenstand BKI → Projekt</div><div>2025-Q1 → 2026-Q2 (Indexfaktor 1.0556)</div>
+  <div class="k">HOAI-Leistungsphase</div><div>LP3</div>
+  <div class="k">BGF / BRI / NUF</div><div>2,150 m² / 7,740 m³ / 1,620 m² (5 Geschosse)</div>
+  <div class="k">Erstellt am</div><div>2026-05-27 15:53</div>
+</div>
+
+<h2>Kostenberechnung – DIN 276 Kostengruppen 1. Ebene</h2>
+<table>
+<thead><tr>
+  <th>KG</th><th>Bezeichnung</th><th>Einheit</th><th>Menge</th>
+  <th>€/Einheit</th><th>Summe netto</th><th>MwSt 19 %</th><th>Summe brutto</th><th>80%-KI</th>
+</tr></thead>
+<tbody>
+
+        <tr>
+          <td class="kg">200</td>
+          <td>Vorbereitende Maßnahmen</td>
+          <td class="c">m2 BGF</td>
+          <td class="r">2,150.00</td>
+          <td class="r">65,85 €</td>
+          <td class="r b">141.577,50 €</td>
+          <td class="r">26.899,72 €</td>
+          <td class="r b">168.477,22 €</td>
+          <td class="r small">65.183,26 € – 238.187,61 €</td>
+        </tr>
+        <tr>
+          <td class="kg">300</td>
+          <td>Bauwerk – Baukonstruktionen</td>
+          <td class="c">m2 BGF</td>
+          <td class="r">2,150.00</td>
+          <td class="r">2.669,87 €</td>
+          <td class="r b">5.740.220,50 €</td>
+          <td class="r">1.090.641,90 €</td>
+          <td class="r b">6.830.862,40 €</td>
+          <td class="r small">4.078.106,81 € – 7.614.494,87 €</td>
+        </tr>
+        <tr>
+          <td class="kg">400</td>
+          <td>Bauwerk – Technische Anlagen</td>
+          <td class="c">m2 BGF</td>
+          <td class="r">2,150.00</td>
+          <td class="r">730,32 €</td>
+          <td class="r b">1.570.188,00 €</td>
+          <td class="r">298.335,72 €</td>
+          <td class="r b">1.868.523,72 €</td>
+          <td class="r small">996.259,17 € – 2.239.652,77 €</td>
+        </tr>
+        <tr>
+          <td class="kg">500</td>
+          <td>Außenanlagen und Freiflächen</td>
+          <td class="c">m2 BGF</td>
+          <td class="r">2,150.00</td>
+          <td class="r">179,59 €</td>
+          <td class="r b">386.118,50 €</td>
+          <td class="r">73.362,51 €</td>
+          <td class="r b">459.481,01 €</td>
+          <td class="r small">140.028,34 € – 712.040,43 €</td>
+        </tr>
+        <tr>
+          <td class="kg">600</td>
+          <td>Ausstattung und Kunstwerke</td>
+          <td class="c">m2 BGF</td>
+          <td class="r">2,150.00</td>
+          <td class="r">47,89 €</td>
+          <td class="r b">102.963,50 €</td>
+          <td class="r">19.563,06 €</td>
+          <td class="r b">122.526,56 €</td>
+          <td class="r small">26.990,85 € – 208.181,77 €</td>
+        </tr>
+        <tr>
+          <td class="kg">700</td>
+          <td>Baunebenkosten</td>
+          <td class="c">m2 BGF</td>
+          <td class="r">2,150.00</td>
+          <td class="r">604,61 €</td>
+          <td class="r b">1.299.911,50 €</td>
+          <td class="r">246.983,18 €</td>
+          <td class="r b">1.546.894,68 €</td>
+          <td class="r small">870.397,22 € – 1.793.090,00 €</td>
+        </tr>
+<tr class="sum"><td></td><td>Bauwerkskosten KG 300+400</td><td colspan="3"></td><td class="r">7.310.408,50 €</td><td colspan="3"></td></tr>
+<tr class="sum"><td></td><td>Herstellungskosten KG 200–700</td><td colspan="3"></td><td class="r">9.240.979,50 €</td><td colspan="3"></td></tr>
+<tr class="sum"><td></td><td>Summe netto</td><td colspan="3"></td><td class="r">9.240.979,50 €</td><td class="r">1.755.786,09 €</td><td class="r">10.996.765,59 €</td><td></td></tr>
+<tr class="sum"><td></td><td>Risikoaufschlag AHO 9 (13.0 % auf KG 300+400)</td><td colspan="3"></td><td class="r">950.353,10 €</td><td colspan="3"></td></tr>
+<tr class="sum"><td></td><td>Gesamtkosten inkl. Risiko (netto)</td><td colspan="3"></td><td class="r">10.191.332,60 €</td><td colspan="3"></td></tr>
+</tbody>
+</table>
+
+<div class="ki">
+<strong>Konfidenz (BAYESIAN-BKI):</strong>&nbsp;
+Erwartungswert <b>9.240.979,50 €</b><br>
+80 %-Intervall: 6.894.805,72 € – 11.845.799,69 €<br>
+95 %-Intervall: 5.975.436,68 € – 13.668.371,34 €
+</div>
+
+
+
+<div class="meta">
+<b>Methodik:</b> BKI Baukosten 2025 (Q1) · Regionalfaktor und Großstadtzuschlag · Baupreisindex Destatis 61261 mit ARIMA-Surrogat-Prognose · Konfidenzmodell BAYESIAN-BKI (Lognormal, σ aus BKI-Streuband × HOAI-LP-Unsicherheit, Aggregation mit ρ=0,3) · Risikoaufschläge nach AHO Heft 9.
+<br>Diese maschinell erstellte Kostenermittlung ersetzt nicht die unterzeichnete Kostenermittlung nach HOAI § 6.
+</div>
+
+</body></html>

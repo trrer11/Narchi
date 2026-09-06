@@ -1,0 +1,3 @@
+file;size_kb;n_total;n_building;n_drawing;n_mapped;high_conf_pct;mid_conf_pct;low_conf_pct;n_unique_kg;n_kg300;n_kg400;t_extract_s;t_map_s;error
+AC20-FZK-Haus.ifc;2510.0;96.0;96.0;0.0;96.0;49.0;50.0;1.0;9.0;95.0;0.0;1.39;0.01;
+IfcOpenHouse.ifc;;;;;;;;;;;;;;Unable to parse IFC SPF header

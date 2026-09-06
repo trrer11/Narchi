@@ -1,0 +1,111 @@
+{
+  "_meta": {
+    "stand": "2026 (BEG-Förderung KfW + BAFA, BMWSB)",
+    "hinweis": "Werte indikativ; aktuelle Konditionen unter kfw.de und bafa.de prüfen",
+    "quellen": ["https://www.kfw.de/inlandsfoerderung/", "https://www.bafa.de/EWG"]
+  },
+  "programme": {
+    "kfw_297_neubau_kn": {
+      "name": "KfW 297 Klimafreundlicher Neubau (KFN)",
+      "kategorie": "Neubau",
+      "zinssatz_pct": 1.92,
+      "tilgungszuschuss_pct": 0,
+      "max_kredit_eur_we": 100000,
+      "voraussetzungen": [
+        "Effizienzhaus 40",
+        "Treibhausgasemissionen ≤ 24 kgCO2e/m²·a (LCA)",
+        "Heizung erneuerbar (≥ 65% EE)"
+      ],
+      "naa_klassen": ["EH_40", "EH_40_NH"]
+    },
+    "kfw_297_kfn_qng": {
+      "name": "KfW 297 KFN mit QNG-Plus",
+      "kategorie": "Neubau Premium",
+      "zinssatz_pct": 1.45,
+      "tilgungszuschuss_pct": 5,
+      "max_kredit_eur_we": 150000,
+      "voraussetzungen": [
+        "Effizienzhaus 40",
+        "QNG-Plus oder QNG-Premium Siegel",
+        "GHG ≤ 24 kgCO2e/m²·a"
+      ],
+      "naa_klassen": ["EH_40_NH"]
+    },
+    "kfw_261_sanierung_eh85": {
+      "name": "KfW 261 Energieeffizient Sanieren (EH 85)",
+      "kategorie": "Sanierung",
+      "zinssatz_pct": 2.45,
+      "tilgungszuschuss_pct": 5,
+      "max_kredit_eur_we": 120000,
+      "voraussetzungen": ["Effizienzhaus 85 nach Sanierung"],
+      "naa_klassen": ["EH_85"]
+    },
+    "kfw_261_sanierung_eh70": {
+      "name": "KfW 261 EH 70",
+      "kategorie": "Sanierung",
+      "zinssatz_pct": 2.15,
+      "tilgungszuschuss_pct": 10,
+      "max_kredit_eur_we": 120000,
+      "voraussetzungen": ["Effizienzhaus 70 nach Sanierung"],
+      "naa_klassen": ["EH_70"]
+    },
+    "kfw_261_sanierung_eh55": {
+      "name": "KfW 261 EH 55",
+      "kategorie": "Sanierung",
+      "zinssatz_pct": 1.85,
+      "tilgungszuschuss_pct": 15,
+      "max_kredit_eur_we": 120000,
+      "voraussetzungen": ["Effizienzhaus 55 nach Sanierung"],
+      "naa_klassen": ["EH_55"]
+    },
+    "kfw_261_sanierung_eh40": {
+      "name": "KfW 261 EH 40",
+      "kategorie": "Sanierung",
+      "zinssatz_pct": 1.55,
+      "tilgungszuschuss_pct": 20,
+      "max_kredit_eur_we": 150000,
+      "voraussetzungen": ["Effizienzhaus 40 nach Sanierung"],
+      "naa_klassen": ["EH_40"]
+    },
+    "bafa_einzelmassnahme": {
+      "name": "BAFA Einzelmaßnahmen-Förderung (BEG EM)",
+      "kategorie": "Sanierung Einzelmaßnahmen",
+      "zuschuss_pct": 15,
+      "isfp_bonus_pct": 5,
+      "max_zuschuss_eur_we": 60000,
+      "voraussetzungen": [
+        "Energetische Einzelmaßnahme (Dämmung, Fenster, Lüftung, …)",
+        "Antrag VOR Beauftragung",
+        "Energieberater BAFA-zugelassen"
+      ],
+      "naa_klassen": []
+    },
+    "bafa_heizung_waermepumpe": {
+      "name": "BAFA Heizungsförderung Wärmepumpe",
+      "kategorie": "Heizungstausch",
+      "zuschuss_pct": 30,
+      "boni_pct": {
+        "klimageschwindigkeit": 20,
+        "einkommen_unter_40k": 30,
+        "effizienz_bonus": 5
+      },
+      "max_foerdersumme_eur": 70000,
+      "voraussetzungen": [
+        "Wärmepumpe nach BAFA-Liste",
+        "JAZ ≥ 3.0",
+        "Tausch fossile Altheizung"
+      ]
+    }
+  },
+  "qng_anforderungen": {
+    "_hinweis": "Qualitätssiegel Nachhaltiges Gebäude — Voraussetzung für KFN-Plus-Förderung",
+    "ghg_max_kgco2e_m2_a": 24,
+    "primaerenergie_max_kWh_m2_a": 28,
+    "nachhaltigkeitskriterien": [
+      "Lebenszyklusanalyse nach DIN EN 15978",
+      "Schadstoffarme Baustoffe",
+      "Rückbaufähigkeit",
+      "Barrierefreiheit"
+    ]
+  }
+}

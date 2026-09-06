@@ -1,0 +1,3 @@
+title: "Soll/Ist\nVergleich"
+tooltip: "Vergleicht die aktuelle Berechnung mit einer früher gespeicherten JSON-Audit-Datei."
+context: "zero-doc"

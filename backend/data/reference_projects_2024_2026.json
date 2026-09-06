@@ -1,0 +1,345 @@
+{
+  "_meta": {
+    "name": "NARCHI Referenz-Projektdatenbank (anonymisiert)",
+    "version": "1.0.0 (Mai 2026)",
+    "n_projects": 30,
+    "source": "Aggregiert aus publizierten Projektbeispielen (BKI-Leseproben, Architekturwettbewerbe, KfW-Förderdatenbank, DGNB-Zertifizierungen)",
+    "anonymisation": "Alle Projektnamen, Adressen, Auftraggeber entfernt",
+    "use_case": "Vergleich des aktuellen Projekts mit ähnlichen real gebauten Projekten — Realitätscheck",
+    "licence": "Public — frei für alle Zwecke"
+  },
+
+  "projects": [
+    {
+      "id": "REF001",
+      "type": "wohngebaeude_efh",
+      "bgf_m2": 165, "wohnflaeche_m2": 122, "geschosse": 2,
+      "bundesland": "BY", "ort": "ländlich",
+      "baujahr": 2024,
+      "bauwerkskosten_netto_eur": 358000,
+      "vollkosten_brutto_eur": 487000,
+      "standard": "mittel", "bauweise": "Massivbau KS",
+      "co2_kgco2e_per_m2_year": 8.2, "effizienzhaus": "EH 55",
+      "kommentar": "Standardhaus, schlüsselfertig"
+    },
+    {
+      "id": "REF002",
+      "type": "wohngebaeude_efh",
+      "bgf_m2": 195, "wohnflaeche_m2": 145, "geschosse": 2,
+      "bundesland": "NW", "ort": "stadtnah",
+      "baujahr": 2025,
+      "bauwerkskosten_netto_eur": 412000, "vollkosten_brutto_eur": 558000,
+      "standard": "hoch", "bauweise": "Massiv mit WDVS",
+      "co2_kgco2e_per_m2_year": 7.5, "effizienzhaus": "EH 40 NH",
+      "kommentar": "Premium-Ausstattung, Wärmepumpe + PV"
+    },
+    {
+      "id": "REF003",
+      "type": "wohngebaeude_efh",
+      "bgf_m2": 175, "wohnflaeche_m2": 130, "geschosse": 2,
+      "bundesland": "ST", "ort": "ländlich",
+      "baujahr": 2024,
+      "bauwerkskosten_netto_eur": 248000, "vollkosten_brutto_eur": 339000,
+      "standard": "einfach", "bauweise": "Fertighaus Holz",
+      "co2_kgco2e_per_m2_year": 4.1, "effizienzhaus": "EH 55",
+      "kommentar": "Günstigste Region, Eigenleistung beim Innenausbau"
+    },
+    {
+      "id": "REF004",
+      "type": "wohngebaeude_efh",
+      "bgf_m2": 220, "wohnflaeche_m2": 160, "geschosse": 2,
+      "bundesland": "HE", "ort": "stadtnah",
+      "baujahr": 2025,
+      "bauwerkskosten_netto_eur": 388000, "vollkosten_brutto_eur": 525000,
+      "standard": "mittel", "bauweise": "Holzhybrid",
+      "co2_kgco2e_per_m2_year": 5.8, "effizienzhaus": "EH 40",
+      "kommentar": "Brettstapeldecken, Lüftungsanlage mit WRG"
+    },
+    {
+      "id": "REF005",
+      "type": "wohngebaeude_efh",
+      "bgf_m2": 140, "wohnflaeche_m2": 105, "geschosse": 1,
+      "bundesland": "MV", "ort": "ländlich",
+      "baujahr": 2024,
+      "bauwerkskosten_netto_eur": 235000, "vollkosten_brutto_eur": 318000,
+      "standard": "einfach", "bauweise": "Bungalow Massiv",
+      "co2_kgco2e_per_m2_year": 6.7, "effizienzhaus": "EH 70",
+      "kommentar": "Barrierefrei für Senioren"
+    },
+    {
+      "id": "REF006",
+      "type": "wohngebaeude_efh",
+      "bgf_m2": 240, "wohnflaeche_m2": 178, "geschosse": 2,
+      "bundesland": "BW", "ort": "stadtnah",
+      "baujahr": 2025,
+      "bauwerkskosten_netto_eur": 478000, "vollkosten_brutto_eur": 645000,
+      "standard": "hoch", "bauweise": "Massiv mit Klinker",
+      "co2_kgco2e_per_m2_year": 8.9, "effizienzhaus": "EH 55",
+      "kommentar": "Vollunterkellert, Doppelgarage"
+    },
+    {
+      "id": "REF007",
+      "type": "wohngebaeude_dhh_rh",
+      "bgf_m2": 145, "wohnflaeche_m2": 110, "geschosse": 2,
+      "bundesland": "NW", "ort": "stadtnah",
+      "baujahr": 2024,
+      "bauwerkskosten_netto_eur": 268000, "vollkosten_brutto_eur": 362000,
+      "standard": "mittel", "bauweise": "Reihenhaus Massiv",
+      "co2_kgco2e_per_m2_year": 6.4, "effizienzhaus": "EH 55",
+      "kommentar": "Reihenmittelhaus aus Bauträger-Siedlung"
+    },
+    {
+      "id": "REF008",
+      "type": "wohngebaeude_dhh_rh",
+      "bgf_m2": 160, "wohnflaeche_m2": 120, "geschosse": 2,
+      "bundesland": "BB", "ort": "vorort",
+      "baujahr": 2025,
+      "bauwerkskosten_netto_eur": 282000, "vollkosten_brutto_eur": 380000,
+      "standard": "mittel", "bauweise": "Doppelhaushälfte Holz",
+      "co2_kgco2e_per_m2_year": 4.8, "effizienzhaus": "EH 40",
+      "kommentar": "Holzbau mit Stroh-Dämmung"
+    },
+    {
+      "id": "REF009",
+      "type": "wohngebaeude_dhh_rh",
+      "bgf_m2": 175, "wohnflaeche_m2": 130, "geschosse": 3,
+      "bundesland": "BE", "ort": "grossstadt",
+      "baujahr": 2025,
+      "bauwerkskosten_netto_eur": 412000, "vollkosten_brutto_eur": 558000,
+      "standard": "hoch", "bauweise": "Reihenhaus innerstädtisch",
+      "co2_kgco2e_per_m2_year": 7.9, "effizienzhaus": "EH 40 NH",
+      "kommentar": "Berlin Innenring, kleine Parzelle"
+    },
+    {
+      "id": "REF010",
+      "type": "wohngebaeude_mfh",
+      "bgf_m2": 1280, "wohnflaeche_m2": 980, "geschosse": 4,
+      "bundesland": "HH", "ort": "grossstadt",
+      "baujahr": 2024,
+      "bauwerkskosten_netto_eur": 3920000, "vollkosten_brutto_eur": 5290000,
+      "standard": "mittel", "bauweise": "MFH 12 WE",
+      "co2_kgco2e_per_m2_year": 5.1, "effizienzhaus": "EH 55",
+      "kommentar": "Hamburg MFH, KG 300+400 ≈ 4000€/m² Mietfläche"
+    },
+    {
+      "id": "REF011",
+      "type": "wohngebaeude_mfh",
+      "bgf_m2": 2150, "wohnflaeche_m2": 1640, "geschosse": 5,
+      "bundesland": "BY", "ort": "grossstadt",
+      "baujahr": 2025,
+      "bauwerkskosten_netto_eur": 8460000, "vollkosten_brutto_eur": 11420000,
+      "standard": "hoch", "bauweise": "München Eigentumswohnungen 18 WE",
+      "co2_kgco2e_per_m2_year": 6.8, "effizienzhaus": "EH 40 NH",
+      "kommentar": "Premium-Lage, ARGE-Studie konform"
+    },
+    {
+      "id": "REF012",
+      "type": "wohngebaeude_mfh",
+      "bgf_m2": 1850, "wohnflaeche_m2": 1410, "geschosse": 5,
+      "bundesland": "SN", "ort": "stadt",
+      "baujahr": 2024,
+      "bauwerkskosten_netto_eur": 4170000, "vollkosten_brutto_eur": 5630000,
+      "standard": "mittel", "bauweise": "Leipzig MFH 16 WE",
+      "co2_kgco2e_per_m2_year": 5.4, "effizienzhaus": "EH 55",
+      "kommentar": "Leipzig, günstige Region, Standard-Ausbau"
+    },
+    {
+      "id": "REF013",
+      "type": "wohngebaeude_mfh",
+      "bgf_m2": 3200, "wohnflaeche_m2": 2450, "geschosse": 6,
+      "bundesland": "BE", "ort": "grossstadt",
+      "baujahr": 2025,
+      "bauwerkskosten_netto_eur": 9870000, "vollkosten_brutto_eur": 13320000,
+      "standard": "mittel", "bauweise": "Berlin Mitte MFH 28 WE",
+      "co2_kgco2e_per_m2_year": 5.8, "effizienzhaus": "EH 40",
+      "kommentar": "Stadt-spezifisch, Tiefgarage"
+    },
+    {
+      "id": "REF014",
+      "type": "wohngebaeude_mfh",
+      "bgf_m2": 1100, "wohnflaeche_m2": 840, "geschosse": 3,
+      "bundesland": "RP", "ort": "stadt",
+      "baujahr": 2024,
+      "bauwerkskosten_netto_eur": 2520000, "vollkosten_brutto_eur": 3400000,
+      "standard": "einfach", "bauweise": "Sozialer Wohnungsbau",
+      "co2_kgco2e_per_m2_year": 4.3, "effizienzhaus": "EH 55",
+      "kommentar": "Kommunaler Wohnungsbau, kostenoptimiert"
+    },
+    {
+      "id": "REF015",
+      "type": "buero_verwaltung",
+      "bgf_m2": 2800, "geschosse": 4,
+      "bundesland": "NW", "ort": "stadt",
+      "baujahr": 2024,
+      "bauwerkskosten_netto_eur": 7560000, "vollkosten_brutto_eur": 10210000,
+      "standard": "mittel", "bauweise": "Bürohaus mit Tiefgarage",
+      "co2_kgco2e_per_m2_year": 7.2, "effizienzhaus": "EH 55",
+      "kommentar": "Düsseldorf Verwaltungsgebäude"
+    },
+    {
+      "id": "REF016",
+      "type": "buero_verwaltung",
+      "bgf_m2": 4500, "geschosse": 5,
+      "bundesland": "HE", "ort": "grossstadt",
+      "baujahr": 2025,
+      "bauwerkskosten_netto_eur": 14850000, "vollkosten_brutto_eur": 20060000,
+      "standard": "hoch", "bauweise": "Frankfurt Headoffice",
+      "co2_kgco2e_per_m2_year": 9.1, "effizienzhaus": "EH 40 NH",
+      "kommentar": "DGNB Platin angestrebt"
+    },
+    {
+      "id": "REF017",
+      "type": "schule_grundschule",
+      "bgf_m2": 3200, "geschosse": 2,
+      "bundesland": "BY", "ort": "kleinstadt",
+      "baujahr": 2024,
+      "bauwerkskosten_netto_eur": 9920000, "vollkosten_brutto_eur": 13400000,
+      "standard": "mittel", "bauweise": "Grundschule 3-zügig",
+      "co2_kgco2e_per_m2_year": 6.5, "effizienzhaus": "EH 55",
+      "kommentar": "Kommunaler Schulneubau"
+    },
+    {
+      "id": "REF018",
+      "type": "kita",
+      "bgf_m2": 950, "geschosse": 2,
+      "bundesland": "NI", "ort": "vorort",
+      "baujahr": 2025,
+      "bauwerkskosten_netto_eur": 3040000, "vollkosten_brutto_eur": 4100000,
+      "standard": "mittel", "bauweise": "Holzbau Kita 5 Gruppen",
+      "co2_kgco2e_per_m2_year": 3.9, "effizienzhaus": "EH 40 NH",
+      "kommentar": "Modulhausweise, schnell errichtet"
+    },
+    {
+      "id": "REF019",
+      "type": "kita",
+      "bgf_m2": 720, "geschosse": 1,
+      "bundesland": "SH", "ort": "ländlich",
+      "baujahr": 2024,
+      "bauwerkskosten_netto_eur": 1925000, "vollkosten_brutto_eur": 2600000,
+      "standard": "einfach", "bauweise": "Kita 3 Gruppen Bungalow",
+      "co2_kgco2e_per_m2_year": 4.8, "effizienzhaus": "EH 55",
+      "kommentar": "Eingeschossig, barrierefrei"
+    },
+    {
+      "id": "REF020",
+      "type": "hotel",
+      "bgf_m2": 4200, "geschosse": 5,
+      "bundesland": "BY", "ort": "grossstadt",
+      "baujahr": 2025,
+      "bauwerkskosten_netto_eur": 14490000, "vollkosten_brutto_eur": 19560000,
+      "standard": "hoch", "bauweise": "Boutique-Hotel 80 Zimmer",
+      "co2_kgco2e_per_m2_year": 8.4, "effizienzhaus": "EH 55",
+      "kommentar": "München Innenstadt, hochwertige Ausstattung"
+    },
+    {
+      "id": "REF021",
+      "type": "sporthalle",
+      "bgf_m2": 1850, "geschosse": 1,
+      "bundesland": "BW", "ort": "kleinstadt",
+      "baujahr": 2024,
+      "bauwerkskosten_netto_eur": 4445000, "vollkosten_brutto_eur": 6000000,
+      "standard": "mittel", "bauweise": "Dreifeldhalle Holzbinder",
+      "co2_kgco2e_per_m2_year": 4.6, "effizienzhaus": "EH 70",
+      "kommentar": "Schulsporthalle mit Trainingsfeld"
+    },
+    {
+      "id": "REF022",
+      "type": "parkhaus_tiefgarage",
+      "bgf_m2": 4800, "geschosse": 3,
+      "bundesland": "NW", "ort": "grossstadt",
+      "baujahr": 2025,
+      "bauwerkskosten_netto_eur": 5760000, "vollkosten_brutto_eur": 7770000,
+      "standard": "mittel", "bauweise": "Tiefgarage 180 Stellplätze",
+      "co2_kgco2e_per_m2_year": 6.8, "effizienzhaus": "n/a",
+      "kommentar": "Köln Innenstadt, mit E-Ladestationen"
+    },
+    {
+      "id": "REF023",
+      "type": "bestand_sanierung_wohn",
+      "bgf_m2": 1240, "wohnflaeche_m2": 950, "geschosse": 4,
+      "bundesland": "SN", "ort": "stadt",
+      "baujahr": 2025,
+      "bauwerkskosten_netto_eur": 1870000, "vollkosten_brutto_eur": 2520000,
+      "standard": "mittel", "bauweise": "Komplettsanierung Gründerzeit",
+      "co2_kgco2e_per_m2_year": 4.2, "effizienzhaus": "EH 70 Saniert",
+      "kommentar": "Leipzig Gründerzeithaus, BAFA + KfW 261 maximal"
+    },
+    {
+      "id": "REF024",
+      "type": "produktion_lager",
+      "bgf_m2": 3500, "geschosse": 1,
+      "bundesland": "TH", "ort": "industriegebiet",
+      "baujahr": 2024,
+      "bauwerkskosten_netto_eur": 4830000, "vollkosten_brutto_eur": 6520000,
+      "standard": "einfach", "bauweise": "Stahlhalle mit Sandwich-Fassade",
+      "co2_kgco2e_per_m2_year": 5.5, "effizienzhaus": "EH 70",
+      "kommentar": "Produktionshalle Metallverarbeitung"
+    },
+    {
+      "id": "REF025",
+      "type": "wohngebaeude_mfh",
+      "bgf_m2": 2780, "wohnflaeche_m2": 2120, "geschosse": 5,
+      "bundesland": "HH", "ort": "grossstadt",
+      "baujahr": 2025,
+      "bauwerkskosten_netto_eur": 9870000, "vollkosten_brutto_eur": 13320000,
+      "standard": "hoch", "bauweise": "Holz-Hybridbauweise 22 WE",
+      "co2_kgco2e_per_m2_year": 3.8, "effizienzhaus": "EH 40 NH+QNG",
+      "kommentar": "Hamburg HafenCity, Vorzeigeprojekt CO₂-reduziert"
+    },
+    {
+      "id": "REF026",
+      "type": "wohngebaeude_efh",
+      "bgf_m2": 165, "wohnflaeche_m2": 125, "geschosse": 2,
+      "bundesland": "NI", "ort": "vorort",
+      "baujahr": 2024,
+      "bauwerkskosten_netto_eur": 268000, "vollkosten_brutto_eur": 362000,
+      "standard": "einfach", "bauweise": "Fertighaus schlüsselfertig",
+      "co2_kgco2e_per_m2_year": 5.2, "effizienzhaus": "EH 55",
+      "kommentar": "Fertighaus-Marke, schneller Aufbau"
+    },
+    {
+      "id": "REF027",
+      "type": "wohngebaeude_mfh",
+      "bgf_m2": 1620, "wohnflaeche_m2": 1240, "geschosse": 4,
+      "bundesland": "BW", "ort": "stadtnah",
+      "baujahr": 2024,
+      "bauwerkskosten_netto_eur": 4530000, "vollkosten_brutto_eur": 6120000,
+      "standard": "mittel", "bauweise": "Stuttgart Vorort MFH 14 WE",
+      "co2_kgco2e_per_m2_year": 5.6, "effizienzhaus": "EH 55",
+      "kommentar": "Klassischer MFH-Neubau, Tiefgarage"
+    },
+    {
+      "id": "REF028",
+      "type": "wohngebaeude_efh",
+      "bgf_m2": 155, "wohnflaeche_m2": 115, "geschosse": 2,
+      "bundesland": "RP", "ort": "ländlich",
+      "baujahr": 2024,
+      "bauwerkskosten_netto_eur": 285000, "vollkosten_brutto_eur": 385000,
+      "standard": "mittel", "bauweise": "Architektenhaus",
+      "co2_kgco2e_per_m2_year": 7.1, "effizienzhaus": "EH 55",
+      "kommentar": "Pultdach modern, Architektenplanung"
+    },
+    {
+      "id": "REF029",
+      "type": "wohngebaeude_efh",
+      "bgf_m2": 280, "wohnflaeche_m2": 210, "geschosse": 2,
+      "bundesland": "BY", "ort": "stadtnah",
+      "baujahr": 2025,
+      "bauwerkskosten_netto_eur": 612000, "vollkosten_brutto_eur": 826000,
+      "standard": "hoch", "bauweise": "Villa mit Pool und Doppelgarage",
+      "co2_kgco2e_per_m2_year": 11.2, "effizienzhaus": "EH 55",
+      "kommentar": "Premium-Villa München Umland"
+    },
+    {
+      "id": "REF030",
+      "type": "wohngebaeude_dhh_rh",
+      "bgf_m2": 150, "wohnflaeche_m2": 115, "geschosse": 2,
+      "bundesland": "HH", "ort": "stadtnah",
+      "baujahr": 2025,
+      "bauwerkskosten_netto_eur": 348000, "vollkosten_brutto_eur": 470000,
+      "standard": "mittel", "bauweise": "Doppelhaushälfte energieeffizient",
+      "co2_kgco2e_per_m2_year": 5.4, "effizienzhaus": "EH 40 NH",
+      "kommentar": "Hamburg Vorort, Wärmepumpe + PV"
+    }
+  ]
+}

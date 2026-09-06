@@ -1,0 +1,296 @@
+══════════════════════════════════════════════════════════════════════════════════
+  NARCHI · DIN 276 Kostenermittlung · MFH Berlin-Pankow Demo
+══════════════════════════════════════════════════════════════════════════════════
+  Modus       : hybrid    HOAI-LP 3    Stichtag 2026-Q3
+  Gebäudeart  : Mehrfamilienhaus / Mehrgeschossiger Wohnungsbau
+  Standort    : Berlin / Berlin   (Regionalfaktor 1.134, Indexfaktor 1.0636)
+  IFC         : Ifc2x3_Duplex_Architecture.ifc
+                275 Bauteile · 15 IFC-Klassen
+  Mengen      : BGF 541 m² · BRI 1.623 m³ · NUF 406 m² · 2 Geschosse
+──────────────────────────────────────────────────────────────────────────────────
+  KG   Bezeichnung                             Quelle               Summe netto
+──────────────────────────────────────────────────────────────────────────────────
+  200  Vorbereitende Maßnahmen                 BKI-topdown         35.888.71 €
+  331  Tragende Außenwände                     IFC-bottomup        59.368.60 €
+  332  Nichttragende Außenwände                IFC-bottomup       186.010.96 €
+  341  Tragende Innenwände                     IFC-bottomup       127.682.00 €
+  342  Nichttragende Innenwände                IFC-bottomup        61.885.95 €
+  351  Deckenkonstruktionen                    IFC-bottomup        53.969.29 €
+  353  Deckenbekleidungen                      IFC-bottomup        17.034.82 €
+  400  Bauwerk – Technische Anlagen            BKI-topdown        398.026.67 €
+  500  Außenanlagen und Freiflächen            BKI-topdown         97.875.85 €
+  600  Ausstattung und Kunstwerke              BKI-topdown         26.098.42 €
+  700  Baunebenkosten                          BKI-topdown        329.510.87 €
+──────────────────────────────────────────────────────────────────────────────────
+  Bauwerkskosten KG 300+400           903.978.29 €
+  Herstellungskosten KG 200–700     1.393.352.14 €
+──────────────────────────────────────────────────────────────────────────────────
+  Summe netto                       1.393.352.14 €
+  + MwSt. 19 %                        264.736.91 €
+  Summe brutto                      1.658.089.05 €
+  + Risiko AHO 9 ( 10.0%)          90.397.83 €
+──────────────────────────────────────────────────────────────────────────────────
+  Gesamtkosten inkl. Risiko netto    1.483.749.97 €
+══════════════════════════════════════════════════════════════════════════════════
+  Konfidenz Gesamt (BAYESIAN-BKI):  E=1.393.352€  80%KI=[1.009.743;1.823.238]  95%KI=[863.673;2.131.595]  LP3
+──────────────────────────────────────────────────────────────────────────────────
+  ⚠️  Hinweise:
+    – NUF aus IfcSpace nicht ermittelbar — Schätzung 0.75×BGF = 405.7 m². Für präzise Werte: IfcSpace-Klassifikation im BIM-Modell pflegen.
+    – Bauwerkskosten KG 300+400 = 903.978 € liegen nur bei 49% des BKI-Erwartungswertes. Möglicherweise fehlen Bauteile im IFC-Modell.
+
+==========================================================================================
+  CO₂-BILANZ – Modul A1-A3 (Herstellung)  ·  ÖKOBAUDAT-orientiert
+==========================================================================================
+  Norm: DIN EN 15978:2012-10  ·  Betrachtungszeitraum: 50 Jahre
+  BGF : 541 m²
+------------------------------------------------------------------------------------------
+  KG   Bezeichnung                   Material                             GWP [t CO2eq]
+------------------------------------------------------------------------------------------
+  331  Tragende Außenwände           Beton C25/30                                  12.7
+  332  Nichttragende Außenwände      Gipskartonplatte 12.5 mm                       0.4
+  332  Nichttragende Außenwände      Hochlochziegel Mauerwerk                      64.6
+  341  Tragende Innenwände           Beton C25/30                                   4.7
+  341  Tragende Innenwände           Tragende Innenwand                             8.6
+  341  Tragende Innenwände           Konstruktionsvollholz (KVH)                    2.0
+  342  Nichttragende Innenwände      Nichttragende Innenwand (Trockenb              2.2
+  342  Nichttragende Innenwände      Gipskartonplatte 12.5 mm                       1.0
+  351  Deckenkonstruktionen          Baustahl S355                                  2.8
+  351  Deckenkonstruktionen          Geschossdecke                                  3.8
+  351  Deckenkonstruktionen          Konstruktionsvollholz (KVH)                    0.2
+  353  Deckenbekleidungen            Deckenbekleidung                               1.9
+------------------------------------------------------------------------------------------
+  TOTAL GWP A1-A3                                                 105.0 t CO2eq
+  pro m² BGF (gesamt)                                             194.2 kg/m²
+  pro m² BGF und Jahr (50 a)                               3.88 kg/m²·a
+  DGNB-Benchmark: Min 4.5 / Median 8.8 kg/m²·a
+  → ✅ DGNB Top-10% (Best Practice)
+==========================================================================================
+
+====================================================================================================
+  GEG 2024 / KfW-Effizienzhaus Vor-Check
+====================================================================================================
+  Bauteile geprüft: 8
+  Konformitätsquote: 0.0%
+  Datenbasis vollständig: 0.0%
+  Effizienzhaus-Einstufung (Schätzung): Nicht-konform GEG 2024
+----------------------------------------------------------------------------------------------------
+  Bauteil                        n    Fläche   U max GEG  U gemessen  Verdict
+----------------------------------------------------------------------------------------------------
+  Außenwände gegen Außenluft    45     783.2        0.24           —  ?
+  Fenster und Fenstertüren      26       0.0        1.30           —  ?
+  Außentüren                    26       0.0        1.80           —  ?
+  Dach gegen Außenluft           1       0.0        0.20           —  ?
+  Decke zum unbeheizten DG      30     241.8        0.20           —  ?
+  Bodenplatte gegen Erdreich     7       0.0        0.30           —  ?
+  Kellerdecke gegen unbeheiz    30     241.8        0.30           —  ?
+  Innenwand zu unbeheizt         7     432.0        0.30           —  ?
+----------------------------------------------------------------------------------------------------
+  Empfehlungen:
+    • ⚠️ Mehr als 50% der Bauteile haben keine U-Werte im IFC. Bauphysik-Pset (Pset_WallCommon.ThermalTransmittance etc.) im Revit/Archicad-Modell pflegen für sinnvolle Energieanalyse.
+    • ❌ Bauteile entsprechen nicht den GEG-Mindestanforderungen. Dämmung verstärken vor Bauantrag.
+====================================================================================================
+
+====================================================================================================
+  FÖRDERPROGRAMME-Analyse (KfW + BAFA 2026)
+====================================================================================================
+  Gesamt-Förderpotenzial:          12.982 €
+  💡 Förderpotenzial vorhanden (12.982 €). Energieberatung lohnt sich.
+----------------------------------------------------------------------------------------------------
+  ✅ [ 70%]  KfW 297 Klimafreundlicher Neubau (KFN)
+      Förderung geschätzt:            0 €
+      → GEG-Konformität nur 0.0% — Dämmung verstärken bis EH 40 erreicht
+      → Heizung mit ≥ 65% Erneuerbarer Energie (Wärmepumpe/Pellet/Solar)
+
+  ✅ [ 70%]  BAFA Heizungsförderung Wärmepumpe
+      Förderung geschätzt:       12.982 €
+      → Wärmepumpe nach BAFA-Liste auswählen
+      → JAZ ≥ 3.0 nachweisen
+
+====================================================================================================
+
+══════════════════════════════════════════════════════════════════════════════════════════
+  NARCHI · VERIFIZIERTE BAUKOSTEN-BERECHNUNG (Destatis-basiert)
+══════════════════════════════════════════════════════════════════════════════════════════
+  Gebäudeart       : wohngebaeude_mfh
+  Präzisionsklasse : HIGH  (HIGH = verifizierte Destatis-Daten 2024)
+  Wohnfläche       : 433 m²
+  BGF              : 541 m²
+  Standort         : BE / Berlin
+  Stichtag         : 2026-Q3
+  Regionalfaktor   : 0.999
+  Indexfaktor      : 0.9793
+  €/m² Wohnfläche  : 3065 €
+──────────────────────────────────────────────────────────────────────────────────────────
+  💰 BAUWERKSKOSTEN KG 300+400 (Mittelwert)                    1.326.208 €
+  📊 REALISTISCHE FOURCHETTE (Monte-Carlo P10-P90) :
+     Pessimistisch (P10):       1.048.071 € (-21.0%)
+     Optimistisch  (P90):       1.623.411 € (+22.4%)
+──────────────────────────────────────────────────────────────────────────────────────────
+  Aufteilung in Kostengruppen (typische Werte) :
+    KG 200    2.0%  →           26.524 €  (min:     13.262 - max:     53.048)
+    KG 300   52.0%  →          689.628 €  (min:    636.580 - max:    769.200)
+    KG 400   16.0%  →          212.193 €  (min:    159.145 - max:    291.766)
+    KG 500    4.0%  →           53.048 €  (min:     26.524 - max:     79.572)
+    KG 600    1.0%  →           13.262 €  (min:      6.631 - max:     39.786)
+    KG 700   13.0%  →          172.407 €  (min:    145.883 - max:    225.455)
+──────────────────────────────────────────────────────────────────────────────────────────
+  HERSTELLUNGSKOSTEN gesamt (netto)                             1.167.062 €
+  + MwSt 19%                                                      221.742 €
+  SUMME BRUTTO                                                  1.388.804 €
+──────────────────────────────────────────────────────────────────────────────────────────
+  Quellen verwendet :
+    • Umrechnung BGF→Wohnfläche : Faktor 1.25
+    • Destatis + LBS Research Juli 2024
+    • ARGE Q4/2024 (Konfidenz 85%)
+    • Destatis 61261 (Index 2024-Q4=138.2, 2026-Q3=135.3)
+──────────────────────────────────────────────────────────────────────────────────────────
+  ⚠️ Plausibilitätshinweise :
+    • Wohnfläche nicht direkt gegeben, geschätzt aus BGF/1.25 = 433 m². Für präzise Werte BGF und Wohnfläche separat angeben.
+══════════════════════════════════════════════════════════════════════════════════════════
+
+═══════════════════════════════════════════════════════════════════════════════════════════════
+  📊 NARCHI · BENCHMARK-VERGLEICH MIT 30 REFERENZPROJEKTEN 2024-2025
+═══════════════════════════════════════════════════════════════════════════════════════════════
+  📌 Dein Projekt : wohngebaeude_mfh · 540.9 m² BGF · BE · mittel
+     Aktuell : 1.671 €/m² BGF (Bauwerkskosten)
+───────────────────────────────────────────────────────────────────────────────────────────────
+  📈 Verglichen mit 8 ähnlichen realen Projekten :
+     Median : 3.062 €/m²
+     P10 (günstig) : 1.762 €/m²
+     P90 (teuer)   : 3.935 €/m²
+     Dein Projekt liegt im **0. Perzentil**
+
+  🎯 ✅ TOP 20% : Dein Projekt ist günstiger als 80% der Vergleichsprojekte (1671 €/m² vs Median 3062 €/m²)
+───────────────────────────────────────────────────────────────────────────────────────────────
+  TOP-5 ähnlichste Referenzprojekte :
+     • [REF013] wohngebaeude_mfh       3200 m² · BE · mittel   · 2025 → 3084 €/m² (+84.5%)
+       "Stadt-spezifisch, Tiefgarage"
+     • [REF012] wohngebaeude_mfh       1850 m² · SN · mittel   · 2024 → 2254 €/m² (+34.9%)
+       "Leipzig, günstige Region, Standard-Ausbau"
+     • [REF010] wohngebaeude_mfh       1280 m² · HH · mittel   · 2024 → 3062 €/m² (+83.2%)
+       "Hamburg MFH, KG 300+400 ≈ 4000€/m² Mietfläche"
+     • [REF027] wohngebaeude_mfh       1620 m² · BW · mittel   · 2024 → 2796 €/m² (+67.3%)
+       "Klassischer MFH-Neubau, Tiefgarage"
+     • [REF011] wohngebaeude_mfh       2150 m² · BY · hoch     · 2025 → 3935 €/m² (+135.5%)
+       "Premium-Lage, ARGE-Studie konform"
+───────────────────────────────────────────────────────────────────────────────────────────────
+  💡 INSIGHTS :
+     🌍 Durchschnittlicher CO₂-Wert ähnlicher Projekte : 5.2 kg CO₂eq/m²·Jahr
+     ⚡ Häufigstes Effizienzhaus-Niveau : EH 55 (4 von 8 Projekten)
+
+  🏆 BEST-IN-CLASS (günstig + CO₂-effizient) :
+     ⭐ [REF008] Doppelhaushälfte Holz (BB, 2025) → 4.8 kg CO₂eq/m²·a · EH 40
+       "Holzbau mit Stroh-Dämmung"
+     ⭐ [REF012] Leipzig MFH 16 WE (SN, 2024) → 5.4 kg CO₂eq/m²·a · EH 55
+       "Leipzig, günstige Region, Standard-Ausbau"
+     ⭐ [REF014] Sozialer Wohnungsbau (RP, 2024) → 4.3 kg CO₂eq/m²·a · EH 55
+       "Kommunaler Wohnungsbau, kostenoptimiert"
+═══════════════════════════════════════════════════════════════════════════════════════════════
+
+═════════════════════════════════════════════════════════════════════════════════════
+  💼 NARCHI · HOAI HONORAR-RECHNER
+═════════════════════════════════════════════════════════════════════════════════════
+  Anrechenbare Kosten netto (KG 300+400) :     903.978.29 €
+  Honorarzone : III    Honorarsatz : mittel
+─────────────────────────────────────────────────────────────────────────────────────
+  Grundhonorar Tafelwert HZ III Basis    :     105.629.81 €
+  × HZ-Faktor (1.00)                  :     105.629.81 €
+  × Honorarsatz-Faktor (1.00)           :     105.629.81 €
+─────────────────────────────────────────────────────────────────────────────────────
+  Verteilung auf Leistungsphasen :
+     LP1   (  2%) :       2.112.60 €
+     LP2   (  7%) :       7.394.09 €
+     LP3   ( 15%) :      15.844.47 €
+     LP4   (  3%) :       3.168.89 €
+     LP5   ( 25%) :      26.407.45 €
+     LP6   ( 10%) :      10.562.98 €
+     LP7   (  4%) :       4.225.19 €
+     LP8   ( 32%) :      33.801.54 €
+     LP9   (  2%) :       2.112.60 €
+─────────────────────────────────────────────────────────────────────────────────────
+  Honorar netto                          :     105.629.81 €
+  + Nebenkosten 5.0%                  :       5.281.49 €
+  + MwSt 19%                            :      21.073.15 €
+  HONORAR BRUTTO                         :     131.984.44 €
+═════════════════════════════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════════════════════════════════
+  📊 NARCHI · LIVE MARKT-SNAPSHOT  ·  Stand : Mai 2026
+══════════════════════════════════════════════════════════════════════════════════════════
+  📈 Baupreisindex Wohngebäude Q1/2026 : 137.0 Punkte (Basis 2021=100)
+     YoY +3.3%   QoQ +1.5%
+──────────────────────────────────────────────────────────────────────────────────────────
+  🔥 TOP KOSTENTREIBER (steigende Preise) :
+     ↑ nadelschnittholz_kvh            +8.3% (stark steigend) — Rohholz-Mangel, Witterung
+        betrifft KG : 361, 351, 335
+     ↑ konstruktionsvollholz_kvh       +8.3% (stark steigend)
+        betrifft KG : 361, 351
+     ↑ tischlerarbeiten                +7.5% (stark steigend)
+        betrifft KG : 344, 352
+     ↑ dachdeckungsarbeiten            +7.3% (stark steigend)
+        betrifft KG : 363
+     ↑ elektro_sicherheit_info         +6.7% (stark steigend)
+        betrifft KG : 445, 456, 457
+──────────────────────────────────────────────────────────────────────────────────────────
+  ❄️  TOP KOSTENDRÜCKER (sinkende Preise) :
+     ↓ bitumen                        -14.7% (stark sinkend) — Ölpreis-Entwicklung
+     ↓ stahl_gewalzt                   -4.7% (sinkend)
+        betrifft KG : 333, 343
+──────────────────────────────────────────────────────────────────────────────────────────
+  Qualitative Kostentreiber 2026 :
+     ⬆️  Energiepreise (Iran-Krieg Auswirkungen)
+     ⬆️  Materialknappheit Holz (Witterung)
+     ⬆️  Höhere Tariflöhne Bauhauptgewerbe
+     ⬆️  Strengere GEG-Anforderungen Ausbaukosten
+  Qualitative Kostendrücker 2026 :
+     ⬇️  Industriestrompreis-Vergünstigung 2026
+     ⬇️  Bitumen sinkt (Ölpreis-Korrektur)
+     ⬇️  Stahl-Überangebot global
+     ⬇️  Verbesserte Lieferketten Post-Pandemie
+──────────────────────────────────────────────────────────────────────────────────────────
+  🔮 Prognose Q3/Q4 2026 : Stabilisierung erwartet, weiter moderate Anstiege (1-2% pro Quartal)
+  🏠 Wohnungsgenehmigungen Jan 2026 : +7.4% vs Vorjahr
+══════════════════════════════════════════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════════════════════════════════════════
+  🏆 NARCHI · PROJEKT-OPTIMIERUNGS-SCORE
+══════════════════════════════════════════════════════════════════════════════════════════
+
+  GESAMT-SCORE : 64/100   [C]   Durchschnitt
+  ██████████████████████████████████████░░░░░░░░░░░░░░░░░░░░░░
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  Detail nach 6 Dimensionen :
+
+  💰 KOSTEN-EFFIZIENZ      100.0  [A+]  ██████████████████████████████  
+      Dein Projekt liegt im 0. Perzentil (1671 €/m² BGF vs Markt-Median 3062 €/m²).
+
+  ⚡ ENERGIE-EFFIZIENZ      30.0  [F ]  █████████░░░░░░░░░░░░░░░░░░░░░  
+      Konformität 0.0%, aber 100% Daten fehlen. Score wegen unvollständiger Bauphysik reduziert.
+
+  🌍 CO₂-PERFORMANCE        95.0  [A+]  ████████████████████████████░░  
+      3.88 kg CO₂/m²·a — DGNB Top 10% (best practice)
+
+  💸 FÖRDER-AUSSCHÖPFUNG    35.0  [F ]  ██████████░░░░░░░░░░░░░░░░░░░░  
+      Geringes Förderpotenzial — Konzept überdenken
+
+  🔧 MODELL-QUALITÄT        75.0  [B ]  ██████████████████████░░░░░░░░  
+      IDS-Score 75.0% (0 Errors, 0 Warnings)
+
+  ⚠️  RISIKO-PROFIL          49.0  [F ]  ██████████████░░░░░░░░░░░░░░░░  
+      Breites Konfidenz-Intervall (58%) — höheres Risiko
+
+──────────────────────────────────────────────────────────────────────────────────────────
+  🎯 TOP-5 EMPFOHLENE AKTIONEN :
+     1. [energie_effizienz] Pset_WallCommon.ThermalTransmittance im BIM-Modell pflegen
+     2. [energie_effizienz] U-Werte für alle Bauteile angeben (Dach, Wand, Fenster, Bodenplatte)
+     3. [energie_effizienz] GEG-konform aber kein EH-Status → Dämmung optimieren für EH 55+
+     4. [foerder_ausschoepfung] Energetischen Standard erhöhen für KfW-Förderung
+     5. [foerder_ausschoepfung] Wärmepumpe statt Gasheizung für BAFA-Heizungsförderung
+
+  💡 Geschätztes Einsparpotenzial bei Umsetzung : 43.120 €
+══════════════════════════════════════════════════════════════════════════════════════════
+══════════════════════════════════════════════════════════════════════════════════
+
+✅ Excel: /home/user/narchi/reports/v2.6_demo/demo_v26.xlsx
+✅ HTML : /home/user/narchi/reports/v2.6_demo/demo_v26.html

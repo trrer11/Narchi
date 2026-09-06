@@ -1,0 +1,104 @@
+# §142 — Règles Semgrep MAISON : les interdits §60 deviennent exécutables.
+#
+# Ces règles ne remplacent PAS les tests (qui prouvent le COMPORTEMENT) ; elles
+# ajoutent un filet STATIQUE : un pattern interdit qui réapparaît est signalé
+# au scan, avant même l'exécution. Chaque règle reflète un interdit DOCUMENTÉ
+# de la charte §60 / du README.
+#
+# Usage : semgrep --config semgrep/narchi-rules.yml frontend/src backend/app
+#
+# HONNÊTETÉ : le 1er jet de la règle X-Forwarded-For signalait l'usage LÉGITIME
+# de audit_helper.py (traçage d'audit derrière proxy, pas le rate-limit) — la
+# règle a donc un commentaire-exception explicite, pas un masquage.
+rules:
+  # --- Frontend : jamais de dangerouslySetInnerHTML (XSS, charte §60) -------
+  - id: narchi-no-dangerously-set-inner-html
+    severity: ERROR
+    message: >-
+      dangerouslySetInnerHTML est PROSCRIT (charte §60 : aucune sink XSS).
+      Utiliser SecuritySanitizer (frontend/src/auth/SecuritySanitizer.ts) qui
+      échappe les entités. Si un cas paraît légitime, le discuter AVANT — un
+      écran qui injecte du HTML non échappé est un trou.
+    languages: [ts]
+    patterns:
+      - pattern: dangerouslySetInnerHTML
+
+  # --- Backend : X-Forwarded-For NE doit JAMAIS servir la SÉCURITÉ ----------
+  - id: narchi-x-forwarded-for-audit-only
+    severity: WARNING
+    message: >-
+      X-Forwarded-For ne doit JAMAIS servir la sécurité (rate-limit, anti-spam,
+      authentification) : l'IP de SÉCURITÉ vient strictement du socket ASGI
+      (request.client.host). L'usage LÉGITIME est le TRAÇAGE d'audit derrière
+      un reverse proxy (ex. dependencies/audit_helper.py, commenté comme tel).
+      Vérifier que CET usage est bien de l'audit, pas une décision de sécurité.
+    languages: [python]
+    patterns:
+      - pattern: request.headers.get("x-forwarded-for")
+    # L'exception légitime et documentée (audit) est laissée au relecteur :
+    # la règle est un WARNING qui force la relecture, pas un blocage aveugle.
+
+  # --- Backend : jamais de round() Python sur l'ARGENT (banker's rounding) --
+  # §145 — LE bug de centime : round() fait du banker's rounding (arrondi au
+  # pair), PAS du HALF_UP. round(0.025*100)=2 au lieu de 3 ; round(3*33.335,2)
+  # =100.0 au lieu de 100.01. Corrigé partout en §145 via app/services/money.py
+  # (to_cents / eur). Cette règle EMPÊCHE la réapparition du pattern.
+  # Patterns ciblés sur l'ARGENT uniquement : round(X*100) (→ centimes) et
+  # round(X, 2) (→ euros). Un round() sur un POURCENTAGE (ex. delta %, 1
+  # décimale) ou un MOIS (ex. alter_tage/30.44) n'est PAS de l'argent et
+  # n'est pas matché.
+  - id: narchi-no-bankers-rounding-money
+    severity: ERROR
+    message: >-
+      round() Python fait du banker's rounding, PAS du HALF_UP (charte §114).
+      Sur l'argent, c'est une dérive de centime. Utiliser app/services/money.py
+      (to_cents() ou eur()), jamais round(float*x) ni round(x, 2).
+    languages: [python]
+    patterns:
+      - pattern-either:
+          - pattern: round($X * 100)
+          - pattern: round($X * 100.0)
+          - pattern: round($X, 2)
+    paths:
+      include:
+        - "backend/app/services/*price*.py"
+        - "backend/app/services/*offer*.py"
+        - "backend/app/services/*gaeb*.py"
+        - "backend/app/services/*lv*.py"
+        - "backend/app/services/xrechnung.py"
+        - "backend/app/services/ubl.py"
+        - "backend/app/services/invoice*.py"
+        - "backend/app/services/money.py"
+
+  # --- Backend : jamais de float pour l'ARGENT (invariant §114) -------------
+  # Severity WARNING (pas ERROR). Après §145, les bugs de banker's rounding
+  # sont corrigés ; les float() RESTANTS sont : (1) des RATIOS d'indexation
+  # (Destatis/BKI, ex. float(region.cost_index)) — des multiplicateurs, pas
+  # des centimes ; (2) des conversions d'AFFICHAGE d'un Decimal déjà exact
+  # (float(eur(...))) ; (3) une dette STRUCTURELLE (schéma office_price
+  # `einheitspreis_netto: float`, moteur d'estimation en float) — chantier
+  # dédié, pas un refactor opportuniste. La règle force la relecture.
+  - id: narchi-no-float-money
+    severity: WARNING
+    message: >-
+      L'argent est un Decimal, JAMAIS un float (invariant §114). Après §145,
+      vérifier que CE float est bien (a) un ratio d'indexation, (b) un
+      affichage d'un Decimal déjà exact, ou (c) de la dette structurelle
+      documentée (office_price/estimation engine) — sinon, c'est un bug.
+    languages: [python]
+    patterns:
+      - pattern-either:
+          - pattern: float(...)
+          - pattern: float("...")
+    paths:
+      include:
+        - "backend/app/services/*price*.py"
+        - "backend/app/services/*offer*.py"
+        - "backend/app/services/*gaeb*.py"
+        - "backend/app/services/*lv*.py"
+        - "backend/app/services/xrechnung.py"
+        - "backend/app/services/ubl.py"
+        - "backend/app/services/invoice*.py"
+        - "backend/app/services/money.py"
+        - "backend/app/api/*price*.py"
+        - "backend/app/api/office_price_routes.py"

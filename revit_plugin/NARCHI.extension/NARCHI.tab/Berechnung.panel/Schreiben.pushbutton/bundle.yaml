@@ -1,0 +1,3 @@
+title: "DIN276 Codes\nin Modell"
+tooltip: "Schreibt nach der Berechnung die ermittelten DIN-276-Kostengruppen als benutzerdefiniertes Parameter 'DIN276' in jedes Bauteil zurück. Bidirektional!"
+context: "active-project"

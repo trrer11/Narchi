@@ -1,0 +1,11 @@
+name = "narchi-static-assets"
+main = "src/worker.js"
+compatibility_date = "2026-07-15"
+workers_dev = false
+
+[[r2_buckets]]
+binding = "ASSETS"
+bucket_name = "narchi-static-assets"
+
+# Configurez la route réelle dans Cloudflare, par exemple:
+# routes = [{ pattern = "assets.narchi.de/*", zone_name = "narchi.de" }]

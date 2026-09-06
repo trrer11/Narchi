@@ -1,0 +1,3 @@
+title: "Modell\nvalidieren"
+tooltip: "Prüft ob das aktive Revit-Modell für eine NARCHI-Kostenermittlung geeignet ist. Zeigt Score, Errors und Verbesserungsvorschläge."
+context: "zero-doc"

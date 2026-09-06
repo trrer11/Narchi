@@ -1,0 +1,51 @@
+# Dependencies / virtual environments
+node_modules/
+.venv/
+venv/
+
+# Build and test outputs
+dist/
+build/
+coverage/
+.coverage
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.vite/
+vitest-report.xml
+security-reports/
+logs/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Local databases, uploads and secrets
+*.db
+.env
+.env.*
+!.env.example
+storage/
+uploads/
+
+# IDE / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# §113 — exports de base (données réelles : JAMAIS dans git)
+sauvegardes/*.sql.gz
+sauvegardes/*.json
+!sauvegardes/README.txt
+
+# §121 — artefacts Playwright E2E (rapports, traces, captures d'échec)
+test-results/
+playwright-report/
+
+# §119 - HTTPS local : certificats REELS (cle privee !) et bascule
+# d'activation ne quittent jamais la machine - JAMAIS dans git.
+infra/tls/certs/*
+infra/tls/enabled/*
+!infra/tls/certs/.gitkeep
+!infra/tls/enabled/.gitkeep

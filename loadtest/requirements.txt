@@ -1,0 +1,5 @@
+# §140 — Dépendance du test de charge (locust, MIT). Sépare volontairement
+# de backend/requirements.txt : ce n'est PAS une dépendance de l'application,
+# seulement de l'outil de mesure (jamais embarqué dans l'image produit).
+# Cf. docs/OUTILS_OPEN_SOURCE_ELEVATION.md (P0 « preuve de charge »).
+locust==2.46.3

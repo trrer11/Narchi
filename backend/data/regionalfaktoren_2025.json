@@ -1,0 +1,43 @@
+{
+  "_meta": {
+    "quelle": "BKI Regionalfaktoren 2025 (Bundesdurchschnitt = 1,000). Werte basieren auf der BKI-Auswertung der Baupreisniveaus der 16 Bundesländer und größerer Verdichtungsräume (NUTS-3).",
+    "anwendung": "Kostenkennwert × Regionalfaktor = regional bereinigter Kostenkennwert",
+    "version": "2025-Q1"
+  },
+  "bundeslaender": {
+    "BW": {"name": "Baden-Württemberg",        "faktor": 1.08},
+    "BY": {"name": "Bayern",                    "faktor": 1.10},
+    "BE": {"name": "Berlin",                    "faktor": 1.06},
+    "BB": {"name": "Brandenburg",               "faktor": 0.92},
+    "HB": {"name": "Bremen",                    "faktor": 0.99},
+    "HH": {"name": "Hamburg",                   "faktor": 1.09},
+    "HE": {"name": "Hessen",                    "faktor": 1.05},
+    "MV": {"name": "Mecklenburg-Vorpommern",    "faktor": 0.88},
+    "NI": {"name": "Niedersachsen",             "faktor": 0.96},
+    "NW": {"name": "Nordrhein-Westfalen",       "faktor": 1.00},
+    "RP": {"name": "Rheinland-Pfalz",           "faktor": 0.97},
+    "SL": {"name": "Saarland",                  "faktor": 0.96},
+    "SN": {"name": "Sachsen",                   "faktor": 0.90},
+    "ST": {"name": "Sachsen-Anhalt",            "faktor": 0.87},
+    "SH": {"name": "Schleswig-Holstein",        "faktor": 1.02},
+    "TH": {"name": "Thüringen",                 "faktor": 0.89}
+  },
+  "grossstaedte_zuschlag": {
+    "_hinweis": "Multiplikativer Zuschlag auf den Bundesland-Faktor für Verdichtungsräume.",
+    "Muenchen":        1.12,
+    "Stuttgart":       1.08,
+    "Frankfurt_Main":  1.10,
+    "Hamburg":         1.05,
+    "Berlin":          1.07,
+    "Duesseldorf":     1.06,
+    "Koeln":           1.04,
+    "Hannover":        1.02,
+    "Leipzig":         1.03,
+    "Dresden":         1.02,
+    "Nuernberg":       1.03,
+    "Bremen":          1.01,
+    "Mainz":           1.03,
+    "Karlsruhe":       1.02,
+    "Augsburg":        1.04
+  }
+}

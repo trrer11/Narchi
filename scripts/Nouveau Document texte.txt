@@ -1,0 +1,529 @@
+============================================================
+ NARCHI - Suite E2E dans Docker (5 volets)
+============================================================
+
+[OK] La stack NARCHI repond. Lancement des tests...
+(1er lancement : telechargement des dependances, patientez 2-4 min)
+
+Unable to find image 'mcr.microsoft.com/playwright:v1.61.1-jammy' locally
+v1.61.1-jammy: Pulling from playwright
+cbe10e5f5ba2: Pull complete
+eb3035ae7279: Pull complete
+97e1ee089ace: Pull complete
+8260cf84ee80: Pull complete
+Digest: sha256:7b86926fff94374389e8e1f4fdc5c76d050d4a06a7886bb537bf412b20e2b71e
+Status: Downloaded newer image for mcr.microsoft.com/playwright:v1.61.1-jammy
+
+changed 3 packages in 25s
+npm notice
+npm notice New major version of npm available! 11.13.0 -> 12.0.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+npm notice To update run: npm install -g npm@12.0.2
+npm notice
+
+Running 5 tests using 1 worker
+
+  ✘  1 [chromium] › e2e/01-anmeldung.spec.ts:14:1 › Konto erstellen → falsches Passwort sichtbar abgelehnt → echte Anmeldung (15.3s)
+  ✘  2 [chromium] › e2e/02-projekt-synchronisation.spec.ts:21:1 › am Büro-PC angelegtes Projekt erscheint auf dem zweiten Gerät (15.3s)
+  ✘  3 [chromium] › e2e/03-mangel-foto-synchronisation.spec.ts:25:1 › Mangel mit Foto erscheint auf dem zweiten Gerät — Foto echt decodiert (15.2s)
+  ✘  4 [chromium] › e2e/04-offline-warteschlange.spec.ts:26:1 › Offline-Mangel wartet ehrlich in der Queue und wird nachgeholt (15.3s)
+  ✘  5 [chromium] › e2e/05-ifc-import.spec.ts:20:1 › echte IFC-Datei wird geparst — Bauteile-Mengenliste befüllt (15.3s)
+
+
+  1) [chromium] › e2e/01-anmeldung.spec.ts:14:1 › Konto erstellen → falsches Passwort sichtbar abgelehnt → echte Anmeldung
+
+    TimeoutError: locator.waitFor: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for locator('input[name="username"]') to be visible
+
+
+       at helpers.ts:47
+
+      45 |   await page.goto(appUrl("/app/projects"));
+      46 |   const benutzer = page.locator('input[name="username"]');
+    > 47 |   await benutzer.waitFor({ state: "visible" });
+         |                  ^
+      48 |   await page.getByRole("button", { name: "Noch kein Konto? Registrieren", exact: true }).click();
+      49 |   await page.locator('input[name="name"]').fill(name);
+      50 |   await benutzer.fill(email);
+        at registerViaUi (/app/e2e/helpers.ts:47:18)
+        at /app/e2e/01-anmeldung.spec.ts:21:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/01-anmeldung-Konto-erstell-ca4cb-abgelehnt-→-echte-Anmeldung-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/01-anmeldung-Konto-erstell-ca4cb-abgelehnt-→-echte-Anmeldung-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/01-anmeldung-Konto-erstell-ca4cb-abgelehnt-→-echte-Anmeldung-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/01-anmeldung-Konto-erstell-ca4cb-abgelehnt-→-echte-Anmeldung-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › e2e/02-projekt-synchronisation.spec.ts:21:1 › am Büro-PC angelegtes Projekt erscheint auf dem zweiten Gerät
+
+    TimeoutError: locator.waitFor: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for locator('input[name="username"]') to be visible
+
+
+       at helpers.ts:47
+
+      45 |   await page.goto(appUrl("/app/projects"));
+      46 |   const benutzer = page.locator('input[name="username"]');
+    > 47 |   await benutzer.waitFor({ state: "visible" });
+         |                  ^
+      48 |   await page.getByRole("button", { name: "Noch kein Konto? Registrieren", exact: true }).click();
+      49 |   await page.locator('input[name="name"]').fill(name);
+      50 |   await benutzer.fill(email);
+        at registerViaUi (/app/e2e/helpers.ts:47:18)
+        at /app/e2e/02-projekt-synchronisation.spec.ts:26:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/02-projekt-synchronisation-4dc19-heint-auf-dem-zweiten-Gerät-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/02-projekt-synchronisation-4dc19-heint-auf-dem-zweiten-Gerät-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/02-projekt-synchronisation-4dc19-heint-auf-dem-zweiten-Gerät-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/02-projekt-synchronisation-4dc19-heint-auf-dem-zweiten-Gerät-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › e2e/03-mangel-foto-synchronisation.spec.ts:25:1 › Mangel mit Foto erscheint auf dem zweiten Gerät — Foto echt decodiert
+
+    TimeoutError: locator.waitFor: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for locator('input[name="username"]') to be visible
+
+
+       at helpers.ts:47
+
+      45 |   await page.goto(appUrl("/app/projects"));
+      46 |   const benutzer = page.locator('input[name="username"]');
+    > 47 |   await benutzer.waitFor({ state: "visible" });
+         |                  ^
+      48 |   await page.getByRole("button", { name: "Noch kein Konto? Registrieren", exact: true }).click();
+      49 |   await page.locator('input[name="name"]').fill(name);
+      50 |   await benutzer.fill(email);
+        at registerViaUi (/app/e2e/helpers.ts:47:18)
+        at /app/e2e/03-mangel-foto-synchronisation.spec.ts:34:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/03-mangel-foto-synchronisa-da304-Gerät-—-Foto-echt-decodiert-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/03-mangel-foto-synchronisa-da304-Gerät-—-Foto-echt-decodiert-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/03-mangel-foto-synchronisa-da304-Gerät-—-Foto-echt-decodiert-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/03-mangel-foto-synchronisa-da304-Gerät-—-Foto-echt-decodiert-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [chromium] › e2e/04-offline-warteschlange.spec.ts:26:1 › Offline-Mangel wartet ehrlich in der Queue und wird nachgeholt
+
+    TimeoutError: locator.waitFor: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for locator('input[name="username"]') to be visible
+
+
+       at helpers.ts:47
+
+      45 |   await page.goto(appUrl("/app/projects"));
+      46 |   const benutzer = page.locator('input[name="username"]');
+    > 47 |   await benutzer.waitFor({ state: "visible" });
+         |                  ^
+      48 |   await page.getByRole("button", { name: "Noch kein Konto? Registrieren", exact: true }).click();
+      49 |   await page.locator('input[name="name"]').fill(name);
+      50 |   await benutzer.fill(email);
+        at registerViaUi (/app/e2e/helpers.ts:47:18)
+        at /app/e2e/04-offline-warteschlange.spec.ts:35:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/04-offline-warteschlange-O-761ee-r-Queue-und-wird-nachgeholt-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/04-offline-warteschlange-O-761ee-r-Queue-und-wird-nachgeholt-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/04-offline-warteschlange-O-761ee-r-Queue-und-wird-nachgeholt-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/04-offline-warteschlange-O-761ee-r-Queue-und-wird-nachgeholt-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [chromium] › e2e/05-ifc-import.spec.ts:20:1 › echte IFC-Datei wird geparst — Bauteile-Mengenliste befüllt
+
+    TimeoutError: locator.waitFor: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for locator('input[name="username"]') to be visible
+
+
+       at helpers.ts:47
+
+      45 |   await page.goto(appUrl("/app/projects"));
+      46 |   const benutzer = page.locator('input[name="username"]');
+    > 47 |   await benutzer.waitFor({ state: "visible" });
+         |                  ^
+      48 |   await page.getByRole("button", { name: "Noch kein Konto? Registrieren", exact: true }).click();
+      49 |   await page.locator('input[name="name"]').fill(name);
+      50 |   await benutzer.fill(email);
+        at registerViaUi (/app/e2e/helpers.ts:47:18)
+        at /app/e2e/05-ifc-import.spec.ts:23:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/05-ifc-import-echte-IFC-Da-2c3e2-auteile-Mengenliste-befüllt-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/05-ifc-import-echte-IFC-Da-2c3e2-auteile-Mengenliste-befüllt-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/05-ifc-import-echte-IFC-Da-2c3e2-auteile-Mengenliste-befüllt-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/05-ifc-import-echte-IFC-Da-2c3e2-auteile-Mengenliste-befüllt-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5 failed
+    [chromium] › e2e/01-anmeldung.spec.ts:14:1 › Konto erstellen → falsches Passwort sichtbar abgelehnt → echte Anmeldung
+    [chromium] › e2e/02-projekt-synchronisation.spec.ts:21:1 › am Büro-PC angelegtes Projekt erscheint auf dem zweiten Gerät
+    [chromium] › e2e/03-mangel-foto-synchronisation.spec.ts:25:1 › Mangel mit Foto erscheint auf dem zweiten Gerät — Foto echt decodiert
+    [chromium] › e2e/04-offline-warteschlange.spec.ts:26:1 › Offline-Mangel wartet ehrlich in der Queue und wird nachgeholt
+    [chromium] › e2e/05-ifc-import.spec.ts:20:1 › echte IFC-Datei wird geparst — Bauteile-Mengenliste befüllt
+npm notice
+npm notice New major version of npm available! 11.13.0 -> 12.0.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+npm notice To update run: npm install -g npm@12.0.2
+npm notice
+
+=== DETAILS ERREUR (error-context) ===
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 01-anmeldung.spec.ts >> Konto erstellen → falsches Passwort sichtbar abgelehnt → echte Anmeldung
+- Location: e2e/01-anmeldung.spec.ts:14:1
+
+# Error details
+
+```
+TimeoutError: locator.waitFor: Timeout 15000ms exceeded.
+Call log:
+  - waiting for locator('input[name="username"]') to be visible
+
+```
+
+# Test source
+
+```ts
+  1   | /**
+  2   |  * §121 — Gestes produit réutilisables de la suite E2E.
+  3   |  *
+  4   |  * Chaque helper pilote l'interface EXACTEMENT comme un utilisateur :
+  5   |  * de vrais clics, les vrais sélecteurs visibles (jamais d'appel réseau
+  6   |  * injecté qui contournerait l'UI — ce serait maquiller la preuve).
+  7   |  */
+  8   | import { expect, type Locator, type Page } from "@playwright/test";
+  9   | import { fileURLToPath } from "node:url";
+  10  |
+  11  | import { appUrl } from "./base";
+  12  |
+  13  | /** Mot de passe de test (jamais en production ; la base est jetable). */
+  14  | export const E2E_PASSWORD = "E2E-lokal-2026-nur-test!";
+  15  |
+  16  | /** Photo RÉELLE (JPEG 640×480, lue par l'import puis vérifiée décodée). */
+  17  | export const FOTO_DATEI = fileURLToPath(new URL("./fixtures/e2e-foto.jpg", import.meta.url));
+  18  | const FOTO_NAME = "e2e-foto.jpg";
+  19  |
+  20  | /** E-mail unique par test → un tenant Trial neuf par test : les tests ne se
+  21  |  *  marchent jamais dessus même s'ils partagent UNE base serveur (comme deux
+  22  |  *  appareils d'un même bureau). */
+  23  | export function uniqueEmail(zweck: string): string {
+  24  |   const rand = Math.random().toString(36).slice(2, 8);
+  25  |   return `e2e-${zweck}-${Date.now()}-${rand}@e2e.local`;
+  26  | }
+  27  |
+  28  | /** Badge de synchro §117/§118 : l' indicateur produit qui dit la vérité
+  29  |  *  (« Noch nie synchronisiert » / « Offline — N warten » / « Synchronisiert · HH:MM »). */
+  30  | export function syncBadge(page: Page): Locator {
+  31  |   return page.locator('span[title^="Synchronisation über den Narchi-Server"]');
+  32  | }
+  33  |
+  34  | /** Le cockpit est monté : la page Projets affiche son bouton principal. */
+  35  | async function warteAufCockpit(page: Page): Promise<void> {
+  36  |   await expect(page.getByRole("button", { name: "Nouveau projet" })).toBeVisible({ timeout: 30_000 });
+  37  | }
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 02-projekt-synchronisation.spec.ts >> am Büro-PC angelegtes Projekt erscheint auf dem zweiten Gerät
+- Location: e2e/02-projekt-synchronisation.spec.ts:21:1
+
+# Error details
+
+```
+TimeoutError: locator.waitFor: Timeout 15000ms exceeded.
+Call log:
+  - waiting for locator('input[name="username"]') to be visible
+
+```
+
+# Test source
+
+```ts
+  1   | /**
+  2   |  * §121 — Gestes produit réutilisables de la suite E2E.
+  3   |  *
+  4   |  * Chaque helper pilote l'interface EXACTEMENT comme un utilisateur :
+  5   |  * de vrais clics, les vrais sélecteurs visibles (jamais d'appel réseau
+  6   |  * injecté qui contournerait l'UI — ce serait maquiller la preuve).
+  7   |  */
+  8   | import { expect, type Locator, type Page } from "@playwright/test";
+  9   | import { fileURLToPath } from "node:url";
+  10  |
+  11  | import { appUrl } from "./base";
+  12  |
+  13  | /** Mot de passe de test (jamais en production ; la base est jetable). */
+  14  | export const E2E_PASSWORD = "E2E-lokal-2026-nur-test!";
+  15  |
+  16  | /** Photo RÉELLE (JPEG 640×480, lue par l'import puis vérifiée décodée). */
+  17  | export const FOTO_DATEI = fileURLToPath(new URL("./fixtures/e2e-foto.jpg", import.meta.url));
+  18  | const FOTO_NAME = "e2e-foto.jpg";
+  19  |
+  20  | /** E-mail unique par test → un tenant Trial neuf par test : les tests ne se
+  21  |  *  marchent jamais dessus même s'ils partagent UNE base serveur (comme deux
+  22  |  *  appareils d'un même bureau). */
+  23  | export function uniqueEmail(zweck: string): string {
+  24  |   const rand = Math.random().toString(36).slice(2, 8);
+  25  |   return `e2e-${zweck}-${Date.now()}-${rand}@e2e.local`;
+  26  | }
+  27  |
+  28  | /** Badge de synchro §117/§118 : l' indicateur produit qui dit la vérité
+  29  |  *  (« Noch nie synchronisiert » / « Offline — N warten » / « Synchronisiert · HH:MM »). */
+  30  | export function syncBadge(page: Page): Locator {
+  31  |   return page.locator('span[title^="Synchronisation über den Narchi-Server"]');
+  32  | }
+  33  |
+  34  | /** Le cockpit est monté : la page Projets affiche son bouton principal. */
+  35  | async function warteAufCockpit(page: Page): Promise<void> {
+  36  |   await expect(page.getByRole("button", { name: "Nouveau projet" })).toBeVisible({ timeout: 30_000 });
+  37  | }
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 03-mangel-foto-synchronisation.spec.ts >> Mangel mit Foto erscheint auf dem zweiten Gerät — Foto echt decodiert
+- Location: e2e/03-mangel-foto-synchronisation.spec.ts:25:1
+
+# Error details
+
+```
+TimeoutError: locator.waitFor: Timeout 15000ms exceeded.
+Call log:
+  - waiting for locator('input[name="username"]') to be visible
+
+```
+
+# Test source
+
+```ts
+  1   | /**
+  2   |  * §121 — Gestes produit réutilisables de la suite E2E.
+  3   |  *
+  4   |  * Chaque helper pilote l'interface EXACTEMENT comme un utilisateur :
+  5   |  * de vrais clics, les vrais sélecteurs visibles (jamais d'appel réseau
+  6   |  * injecté qui contournerait l'UI — ce serait maquiller la preuve).
+  7   |  */
+  8   | import { expect, type Locator, type Page } from "@playwright/test";
+  9   | import { fileURLToPath } from "node:url";
+  10  |
+  11  | import { appUrl } from "./base";
+  12  |
+  13  | /** Mot de passe de test (jamais en production ; la base est jetable). */
+  14  | export const E2E_PASSWORD = "E2E-lokal-2026-nur-test!";
+  15  |
+  16  | /** Photo RÉELLE (JPEG 640×480, lue par l'import puis vérifiée décodée). */
+  17  | export const FOTO_DATEI = fileURLToPath(new URL("./fixtures/e2e-foto.jpg", import.meta.url));
+  18  | const FOTO_NAME = "e2e-foto.jpg";
+  19  |
+  20  | /** E-mail unique par test → un tenant Trial neuf par test : les tests ne se
+  21  |  *  marchent jamais dessus même s'ils partagent UNE base serveur (comme deux
+  22  |  *  appareils d'un même bureau). */
+  23  | export function uniqueEmail(zweck: string): string {
+  24  |   const rand = Math.random().toString(36).slice(2, 8);
+  25  |   return `e2e-${zweck}-${Date.now()}-${rand}@e2e.local`;
+  26  | }
+  27  |
+  28  | /** Badge de synchro §117/§118 : l' indicateur produit qui dit la vérité
+  29  |  *  (« Noch nie synchronisiert » / « Offline — N warten » / « Synchronisiert · HH:MM »). */
+  30  | export function syncBadge(page: Page): Locator {
+  31  |   return page.locator('span[title^="Synchronisation über den Narchi-Server"]');
+  32  | }
+  33  |
+  34  | /** Le cockpit est monté : la page Projets affiche son bouton principal. */
+  35  | async function warteAufCockpit(page: Page): Promise<void> {
+  36  |   await expect(page.getByRole("button", { name: "Nouveau projet" })).toBeVisible({ timeout: 30_000 });
+  37  | }
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 04-offline-warteschlange.spec.ts >> Offline-Mangel wartet ehrlich in der Queue und wird nachgeholt
+- Location: e2e/04-offline-warteschlange.spec.ts:26:1
+
+# Error details
+
+```
+TimeoutError: locator.waitFor: Timeout 15000ms exceeded.
+Call log:
+  - waiting for locator('input[name="username"]') to be visible
+
+```
+
+# Test source
+
+```ts
+  1   | /**
+  2   |  * §121 — Gestes produit réutilisables de la suite E2E.
+  3   |  *
+  4   |  * Chaque helper pilote l'interface EXACTEMENT comme un utilisateur :
+  5   |  * de vrais clics, les vrais sélecteurs visibles (jamais d'appel réseau
+  6   |  * injecté qui contournerait l'UI — ce serait maquiller la preuve).
+  7   |  */
+  8   | import { expect, type Locator, type Page } from "@playwright/test";
+  9   | import { fileURLToPath } from "node:url";
+  10  |
+  11  | import { appUrl } from "./base";
+  12  |
+  13  | /** Mot de passe de test (jamais en production ; la base est jetable). */
+  14  | export const E2E_PASSWORD = "E2E-lokal-2026-nur-test!";
+  15  |
+  16  | /** Photo RÉELLE (JPEG 640×480, lue par l'import puis vérifiée décodée). */
+  17  | export const FOTO_DATEI = fileURLToPath(new URL("./fixtures/e2e-foto.jpg", import.meta.url));
+  18  | const FOTO_NAME = "e2e-foto.jpg";
+  19  |
+  20  | /** E-mail unique par test → un tenant Trial neuf par test : les tests ne se
+  21  |  *  marchent jamais dessus même s'ils partagent UNE base serveur (comme deux
+  22  |  *  appareils d'un même bureau). */
+  23  | export function uniqueEmail(zweck: string): string {
+  24  |   const rand = Math.random().toString(36).slice(2, 8);
+  25  |   return `e2e-${zweck}-${Date.now()}-${rand}@e2e.local`;
+  26  | }
+  27  |
+  28  | /** Badge de synchro §117/§118 : l' indicateur produit qui dit la vérité
+  29  |  *  (« Noch nie synchronisiert » / « Offline — N warten » / « Synchronisiert · HH:MM »). */
+  30  | export function syncBadge(page: Page): Locator {
+  31  |   return page.locator('span[title^="Synchronisation über den Narchi-Server"]');
+  32  | }
+  33  |
+  34  | /** Le cockpit est monté : la page Projets affiche son bouton principal. */
+  35  | async function warteAufCockpit(page: Page): Promise<void> {
+  36  |   await expect(page.getByRole("button", { name: "Nouveau projet" })).toBeVisible({ timeout: 30_000 });
+  37  | }
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 05-ifc-import.spec.ts >> echte IFC-Datei wird geparst — Bauteile-Mengenliste befüllt
+- Location: e2e/05-ifc-import.spec.ts:20:1
+
+# Error details
+
+```
+TimeoutError: locator.waitFor: Timeout 15000ms exceeded.
+Call log:
+  - waiting for locator('input[name="username"]') to be visible
+
+```
+
+# Test source
+
+```ts
+  1   | /**
+  2   |  * §121 — Gestes produit réutilisables de la suite E2E.
+  3   |  *
+  4   |  * Chaque helper pilote l'interface EXACTEMENT comme un utilisateur :
+  5   |  * de vrais clics, les vrais sélecteurs visibles (jamais d'appel réseau
+  6   |  * injecté qui contournerait l'UI — ce serait maquiller la preuve).
+  7   |  */
+  8   | import { expect, type Locator, type Page } from "@playwright/test";
+  9   | import { fileURLToPath } from "node:url";
+  10  |
+  11  | import { appUrl } from "./base";
+  12  |
+  13  | /** Mot de passe de test (jamais en production ; la base est jetable). */
+  14  | export const E2E_PASSWORD = "E2E-lokal-2026-nur-test!";
+  15  |
+  16  | /** Photo RÉELLE (JPEG 640×480, lue par l'import puis vérifiée décodée). */
+  17  | export const FOTO_DATEI = fileURLToPath(new URL("./fixtures/e2e-foto.jpg", import.meta.url));
+  18  | const FOTO_NAME = "e2e-foto.jpg";
+  19  |
+  20  | /** E-mail unique par test → un tenant Trial neuf par test : les tests ne se
+  21  |  *  marchent jamais dessus même s'ils partagent UNE base serveur (comme deux
+  22  |  *  appareils d'un même bureau). */
+  23  | export function uniqueEmail(zweck: string): string {
+  24  |   const rand = Math.random().toString(36).slice(2, 8);
+  25  |   return `e2e-${zweck}-${Date.now()}-${rand}@e2e.local`;
+  26  | }
+  27  |
+  28  | /** Badge de synchro §117/§118 : l' indicateur produit qui dit la vérité
+  29  |  *  (« Noch nie synchronisiert » / « Offline — N warten » / « Synchronisiert · HH:MM »). */
+  30  | export function syncBadge(page: Page): Locator {
+  31  |   return page.locator('span[title^="Synchronisation über den Narchi-Server"]');
+  32  | }
+  33  |
+  34  | /** Le cockpit est monté : la page Projets affiche son bouton principal. */
+  35  | async function warteAufCockpit(page: Page): Promise<void> {
+  36  |   await expect(page.getByRole("button", { name: "Nouveau projet" })).toBeVisible({ timeout: 30_000 });
+  37  | }
+
+============================================================
+ [SUCCES] Les 5 volets sont passes : 5 lignes VERTES "passed".
+         Tout fonctionne.
+============================================================
+
+Nettoyage (rien ne reste sur le PC, a faire quand vous voulez) :
+  docker volume rm narchi-e2e-node_modules
+  docker rmi mcr.microsoft.com/playwright:v1.61.1-jammy
+
+Appuyez sur une touche pour continuer… 
+
+
+
+reuslats console :  the Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.
+
+index-A_6p1CVS.js:2 [SecuritySanitizer] Couche de sécurité initialisée.
+
+index-A_6p1CVS.js:2 [Telemetry] Sentry frontend désactivé (VITE_SENTRY_DSN absent).

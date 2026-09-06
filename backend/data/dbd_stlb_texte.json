@@ -1,0 +1,163 @@
+{
+  "_meta": {
+    "name": "STLB-Bau / DBD-BauKosten Leistungstexte (Auszug)",
+    "norm": "DIN 18299 ff. (VOB Teil C, Allgemeine Technische Vertragsbedingungen)",
+    "stand": "2026 STLB-Bau Dynamische Baudaten (DBD)",
+    "hinweis": "Standard-Leistungstexte zu DIN 276 Kostengruppen für direkten Import in AVA-Software. Vereinfachte Texte – für ganze STLB-Bau-Sätze gelten kostenpflichtige Lizenzen von Dr. Schiller & Partner.",
+    "quelle": "Konsolidiert aus öffentlich zugänglichen STLB-Mustertexten + VOB/C Normverweisen"
+  },
+  "leistungsbereiche_din_stlb": {
+    "_hinweis": "Mapping DIN 276 KG → STLB-Bau Leistungsbereich",
+    "310": ["LB 002 Erdarbeiten DIN 18300"],
+    "320": ["LB 002 Erdarbeiten DIN 18300", "LB 013 Betonarbeiten DIN 18331"],
+    "322": ["LB 013 Betonarbeiten DIN 18331"],
+    "323": ["LB 005 Spezialtiefbauarbeiten DIN 18301"],
+    "324": ["LB 013 Betonarbeiten DIN 18331", "LB 022 Estricharbeiten DIN 18353"],
+    "326": ["LB 018 Abdichtungsarbeiten DIN 18336"],
+    "327": ["LB 009 Entwässerungskanalarbeiten DIN 18306"],
+    "331": ["LB 012 Mauerarbeiten DIN 18330", "LB 013 Betonarbeiten DIN 18331"],
+    "332": ["LB 012 Mauerarbeiten DIN 18330", "LB 023 Trockenbau DIN 18340"],
+    "333": ["LB 013 Betonarbeiten DIN 18331", "LB 015 Stahlbauarbeiten DIN 18335"],
+    "334": ["LB 016 Zimmer-Holzbau DIN 18334", "LB 021 Tischler DIN 18355"],
+    "335": ["LB 020 Klempnerarbeiten DIN 18339", "LB 023 Trockenbau DIN 18340"],
+    "336": ["LB 023 Trockenbau DIN 18340", "LB 025 Putz und Stuck DIN 18350"],
+    "337": ["LB 035 Fassadenarbeiten DIN 18351"],
+    "338": ["LB 042 Sonnenschutz und Verdunklung"],
+    "341": ["LB 013 Betonarbeiten DIN 18331", "LB 012 Mauerarbeiten DIN 18330"],
+    "342": ["LB 023 Trockenbau DIN 18340", "LB 012 Mauerarbeiten DIN 18330"],
+    "343": ["LB 013 Betonarbeiten DIN 18331", "LB 015 Stahlbauarbeiten DIN 18335"],
+    "344": ["LB 021 Tischlerarbeiten DIN 18355", "LB 027 Stahlzargen"],
+    "345": ["LB 025 Putz und Stuck DIN 18350", "LB 028 Maler- und Lackierarbeiten DIN 18363"],
+    "351": ["LB 013 Betonarbeiten DIN 18331", "LB 016 Zimmer-Holzbau DIN 18334"],
+    "352": ["LB 036 Bodenbelagarbeiten DIN 18365", "LB 022 Estricharbeiten DIN 18353"],
+    "353": ["LB 028 Maler DIN 18363", "LB 023 Trockenbau DIN 18340"],
+    "361": ["LB 016 Zimmer-Holzbau DIN 18334", "LB 020 Klempner DIN 18339"],
+    "363": ["LB 019 Dachdeckungsarbeiten DIN 18338"],
+    "411": ["LB 045 Sanitärtechnische Arbeiten"],
+    "412": ["LB 045 Sanitärtechnische Arbeiten", "LB 048 Trinkwasserinstallation"],
+    "421": ["LB 047 Wärmeerzeugungsanlagen"],
+    "422": ["LB 046 Heizungsverteilung"],
+    "431": ["LB 050 Lüftungs- und Klimatechnik"],
+    "441": ["LB 060 Mittelspannungsanlagen"],
+    "444": ["LB 062 Niederspannungsinstallation"],
+    "445": ["LB 064 Beleuchtungsanlagen"],
+    "461": ["LB 070 Aufzugsanlagen"]
+  },
+  "leistungstexte": {
+    "_hinweis": "Standard-Kurztexte je KG. Bei Bedarf in AVA-Software präzisieren.",
+    "200": {
+      "kurztext": "Vorbereitende Maßnahmen — Baustelleneinrichtung, Erschließung, Sicherung",
+      "langtext": "Sicherheits- und Baustelleneinrichtung gemäß DIN 18299, einschließlich Bauzaun, Bauleitung-Container, Bauwasser-, Baustrom- und Bautoiletten-Anschluss, Beschilderung, Verkehrslenkung während Bauzeit. Liefern, Errichten, Vorhalten und Abräumen.",
+      "einheit": "Pauschal",
+      "leistungsbereich_stlb": "LB 000/001"
+    },
+    "322": {
+      "kurztext": "Bodenplatte Stahlbeton WU C30/37 inkl. Bewehrung",
+      "langtext": "Bodenplatte aus Wasserundurchlässigem Beton (WU) der Festigkeitsklasse C30/37 nach DIN EN 206-1, Expositionsklasse XC1/XC2, Dicke 25 cm. Einschließlich Bewehrung B500B nach DIN 488, Bewehrungsgehalt ≈ 100 kg/m³, Schalung, Verdichten, Glätten und Nachbehandlung. Höhenlage gemäß Planung. Ohne Aushub.",
+      "einheit": "m²",
+      "leistungsbereich_stlb": "LB 013"
+    },
+    "331": {
+      "kurztext": "Tragende Außenwand Kalksandstein 24 cm + Putz",
+      "langtext": "Tragende Außenwand aus Kalksandstein KS-R-24/1,8/10 nach DIN V 106, Wandstärke 240 mm, einschließlich Dünnbettmörtel. Mit beidseitigem Putzauftrag (innen Gipsputz 15 mm, außen mineralischer Außenputz 20 mm) gemäß DIN V 18550. Vermörtelung gemäß DIN EN 1996.",
+      "einheit": "m²",
+      "leistungsbereich_stlb": "LB 012"
+    },
+    "332": {
+      "kurztext": "Nichttragende Außenwand mit Wärmedämmverbundsystem (WDVS)",
+      "langtext": "Nichttragende Außenwand mit Mauerwerk (Wandstärke 17,5 cm) und WDVS-System EPS-Hartschaum WLG 035, Dämmstärke 160 mm, Putzträgerplatte, Armierungsgewebe, Oberputz mineralisch 3 mm gemäß DIN V 18550. Befestigung mit Tellerdübeln in Verlegeschema gemäß Hersteller.",
+      "einheit": "m²",
+      "leistungsbereich_stlb": "LB 035"
+    },
+    "334": {
+      "kurztext": "Außenfenster 3-fach Verglasung Holz/Alu",
+      "langtext": "Außenfenster Holz-Aluminium-Verbund, Profil 90 mm, 3-fach Wärmeschutzverglasung Ug = 0,6 W/(m²K), Uw ≤ 0,9 W/(m²K), Edelgasfüllung Argon, einbruchhemmend RC 2 nach DIN EN 1627. Inkl. Beschläge, Dichtungen, Anschlag, Montage gemäß RAL-Gütezeichen-Montage.",
+      "einheit": "m²",
+      "leistungsbereich_stlb": "LB 021"
+    },
+    "337": {
+      "kurztext": "Elementfassade / Vorhangfassade Pfosten-Riegel",
+      "langtext": "Glasfassade in Pfosten-Riegel-Konstruktion aus Aluminium, thermisch getrennt, Profile gepulvert RAL n. Wahl. 3-fach Isolierverglasung mit Sonnenschutzbeschichtung g ≤ 0,30, Uw = 0,9 W/(m²K). Inkl. Pfosten-Riegel-Profile, Glashaltern, Verschraubungen, Dichtungssystem nach DIN EN 13830.",
+      "einheit": "m²",
+      "leistungsbereich_stlb": "LB 035"
+    },
+    "341": {
+      "kurztext": "Tragende Innenwand Stahlbeton 20 cm",
+      "langtext": "Tragende Innenwand aus Ortbeton C25/30 nach DIN EN 206-1, Wandstärke 200 mm, Expositionsklasse XC1. Einschließlich Bewehrung B500B (≈ 90 kg/m³), zweiseitiger Großflächenschalung, Verdichten, Glätten. Höhenlage und Bewehrungsführung gemäß Statik.",
+      "einheit": "m²",
+      "leistungsbereich_stlb": "LB 013"
+    },
+    "342": {
+      "kurztext": "Nichttragende Innenwand Metallständerwerk (Trockenbau)",
+      "langtext": "Nichttragende Innenwand W112 (Knauf-System o. glw.), Metallständer CW 75/0,6, beidseitig 1× Gipskartonplatte 12,5 mm GKB nach DIN 18180. Hohlraumfüllung Mineralwolle WLG 040, Stärke 60 mm. Verspachtelung Qualitätsstufe Q2, einschl. Anschlüsse, Fugen, Eckschutzprofile.",
+      "einheit": "m²",
+      "leistungsbereich_stlb": "LB 023"
+    },
+    "344": {
+      "kurztext": "Innentür Holzfutter mit gefälzter Tür",
+      "langtext": "Innentür Furnierholz-Türblatt 40 mm, Falztür, gerader Abschluss, mit Stahlzarge oder Holzfutter (je nach Wandart), inkl. Drücker-Garnitur, 3 Bänder, Schlossausstattung BB. DIN-Maß 875×2000 mm.",
+      "einheit": "St",
+      "leistungsbereich_stlb": "LB 021"
+    },
+    "351": {
+      "kurztext": "Geschossdecke Stahlbeton 22 cm",
+      "langtext": "Massivdecke aus Ortbeton C25/30 nach DIN EN 206-1, Dicke 220 mm, Expositionsklasse XC1. Einschl. zweiachsiger Bewehrungsführung nach Statik, Deckenschalung mit Aussteifung, Verdichten, Glätten und Nachbehandlung. Auflager auf tragenden Wänden / Stützen.",
+      "einheit": "m²",
+      "leistungsbereich_stlb": "LB 013"
+    },
+    "352": {
+      "kurztext": "Bodenbelag Parkett Eiche Landhausdiele",
+      "langtext": "Parkettboden Eiche Landhausdiele, geölt-natur, Stärke 13 mm, schwimmend verlegt auf Trittschalldämmung 3 mm. Inkl. Sockelleisten 60×16 mm, Übergangsprofile. Verlegung gemäß DIN 18356.",
+      "einheit": "m²",
+      "leistungsbereich_stlb": "LB 036"
+    },
+    "361": {
+      "kurztext": "Dachkonstruktion Holz Sparrendach gedämmt",
+      "langtext": "Sparrendach KVH C24, Querschnitt 8/24 cm, Achsabstand 70 cm. Vollsparrendämmung Mineralwolle WLG 035, Dicke 240 mm, einschl. Untersparrendämmung 60 mm, Dampfbremse sd ≥ 100 m, Innenbeplankung Gipsfaserplatte 15 mm. Sparrenanschlüsse gemäß Statik.",
+      "einheit": "m²",
+      "leistungsbereich_stlb": "LB 016"
+    },
+    "363": {
+      "kurztext": "Dachbelag Tonziegel mit Lattung",
+      "langtext": "Dachdeckung Tonziegel naturrot, Verfalzdoppelfalz, auf Konterlattung 30×50 mm und Traglattung 30×50 mm, Achsabstand gemäß Hersteller. Unterspannbahn diffusionsoffen sd < 0,3 m. Einschl. First-, Grat-, Ortgang- und Kehlanschlüsse.",
+      "einheit": "m²",
+      "leistungsbereich_stlb": "LB 019"
+    },
+    "412": {
+      "kurztext": "Trinkwasserinstallation Edelstahlrohr",
+      "langtext": "Trinkwasserinstallation aus Edelstahlrohr 1.4521 mit Pressfittings, gedämmt nach GEG, einschl. Befestigungen, Wand- und Deckendurchführungen, Übergangsstücke zu Armaturen, Spülung und Druckprobe gemäß DIN 1988 und DIN EN 806.",
+      "einheit": "m",
+      "leistungsbereich_stlb": "LB 048"
+    },
+    "421": {
+      "kurztext": "Wärmepumpe Luft-Wasser inkl. Pufferspeicher",
+      "langtext": "Luft-Wasser-Wärmepumpe modulierend, Heizleistung gemäß Last (z.B. 10 kW bei A-7/W35), JAZ ≥ 3,8 nach VDI 4650, Schallleistungspegel ≤ 50 dB(A). Inkl. Pufferspeicher 300 L, hydraulische Einbindung, Regelung mit Witterungsführung, Inbetriebnahme.",
+      "einheit": "St",
+      "leistungsbereich_stlb": "LB 047"
+    },
+    "431": {
+      "kurztext": "Kontrollierte Wohnraumlüftung mit Wärmerückgewinnung",
+      "langtext": "Zentralgerät Wohnungslüftung mit WRG (η ≥ 80% gemäß DIN EN 13141), Volumenstrom je Wohnung 90–180 m³/h, einschl. Zu- und Abluftleitungen DN 75 als Hygiene-Lüftungssystem, Schalldämmboxen, Luftauslässe und -einlässe, Filter F7/G4, Filterwechselautomatik.",
+      "einheit": "m",
+      "leistungsbereich_stlb": "LB 050"
+    },
+    "444": {
+      "kurztext": "Niederspannungsinstallation Wohnungselektrik",
+      "langtext": "Niederspannungsinstallation Wohnungsbau gemäß DIN VDE 0100, Stromkreisverteiler mit FI/LS-Kombinationen, Steckdosen und Schalterprogramm, Verkabelung NYM-J 3×1,5/3×2,5 mm² unter Putz, einschl. Unterputzdosen, Klemmverbindungen, Beschriftung Verteiler.",
+      "einheit": "m²",
+      "leistungsbereich_stlb": "LB 062"
+    },
+    "445": {
+      "kurztext": "LED-Beleuchtung Wohnung",
+      "langtext": "LED-Beleuchtung Wohnungsbau, Anschluss 230 V, Lichtfarbe 2700 K (warmweiß), Bezugswerte gemäß DIN EN 12464-1. Liefern und Montieren incl. Trafo / LED-Treiber, dimmbar via Phasenanschnitt, IP20 (Trockenraum) bzw. IP44 (Bad).",
+      "einheit": "St",
+      "leistungsbereich_stlb": "LB 064"
+    },
+    "461": {
+      "kurztext": "Personenaufzug 8 Personen / 630 kg",
+      "langtext": "Maschinenraumloser Personenaufzug nach DIN EN 81-20/81-50, Tragfähigkeit 630 kg / 8 Personen, Fahrgeschwindigkeit 1,0 m/s, Geschossanzahl gemäß Plan. Kabine V4A oder Pulverbeschichtet, Tableau mit Brailleschrift (Barrierefreiheit DIN 18040), Notruf 2-Wege-Kommunikation gemäß BetrSichV.",
+      "einheit": "St",
+      "leistungsbereich_stlb": "LB 070"
+    }
+  }
+}

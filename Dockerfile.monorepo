@@ -1,0 +1,75 @@
+# syntax=docker/dockerfile:1.7
+# ============================================================================
+# NARCHI V5 - Master Dockerfile (Nx Monorepo & Multi-Stage)
+# ============================================================================
+
+# --- STAGE 1: Frontend Builder (Cache Nx) ---
+FROM node:22-alpine AS frontend-builder
+WORKDIR /workspace
+
+# Optimisation du cache : on ne copie d'abord que les fichiers de lock
+COPY package.json package-lock.json nx.json ./
+COPY frontend/package.json frontend/
+
+# Installation sans executer les scripts de pre-build inutiles à ce stade
+RUN --mount=type=cache,target=/root/.npm npm ci --ignore-scripts
+
+# Copie intégrale du code et build via le cache de l'Usine Logicielle
+COPY . .
+RUN npx nx build frontend --prod || (cd frontend && npm run copy-ifc-assets && npm run build)
+
+# --- STAGE 2: Backend Python Wheels Builder ---
+FROM python:3.11-slim AS backend-builder
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libpq-dev \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY backend/requirements-api.txt ./requirements.txt
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip wheel --wheel-dir /app/wheels -r requirements.txt
+
+# --- STAGE 3: Image de Production ---
+FROM python:3.11-slim
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libpq5 \
+    wget \
+    curl \
+    nginx \
+    && rm -rf /var/lib/apt/lists/*
+
+# Injection des roues (wheels) compilées
+COPY --from=backend-builder /app/wheels /wheels
+COPY backend/requirements-api.txt ./requirements.txt
+RUN pip install --no-cache-dir --no-index --find-links=/wheels -r requirements.txt \
+    && rm -rf /wheels
+
+# Copie du backend
+COPY backend/ .
+
+# Copie du frontend (Nginx)
+COPY --from=frontend-builder /workspace/frontend/dist /usr/share/nginx/html
+COPY frontend/nginx.conf /etc/nginx/sites-available/default
+
+RUN mkdir -p storage/uploads storage/reports
+
+# Compte applicatif non-root (Trivy DS-0002) : le conteneur n'exécute que
+# uvicorn ; aucun droit privilégié n'est requis.
+RUN groupadd --system narchi \
+    && useradd --system --gid narchi --no-create-home narchi \
+    && chown -R narchi:narchi /app /usr/share/nginx/html
+
+USER narchi
+
+EXPOSE 8000
+
+# Le point d'entrée exécuterait idéalement un super-visuer (ex: s6-overlay ou supervisord)
+# pour faire tourner Nginx (Front) et Uvicorn (Back) dans le même conteneur,
+# Ou bien l'image serait scindée dans le docker-compose final.
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "2"]

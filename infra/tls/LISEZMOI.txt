@@ -1,0 +1,18 @@
+NARCHI - HTTPS local (etape 4, section 119)
+===========================================
+
+Pourquoi ce dossier : un telephone refuses les fonctions modernes (appareil
+photo, mode hors-ligne PWA, chiffrement) sur http://192.168.x.x - il exige du
+HTTPS avec un certificat de confiance. mkcert fabrique cette confiance LOCALEMENT, sans domaine ni autorite payante.
+
+Contenu :
+  https-8443.conf   gabarit du bloc nginx 8443 (versionne, SANS secret)
+  certs/            certificats generes par mkcert (jamais dans git)
+  enabled/          contient le bloc 8443 COPIE quand HTTPS est actif
+                    (vide = nginx ne sert que le 8080 historique)
+
+Mode d'emploi : double-cliquez 8_ACTIVER_HTTPS_LOCAL.bat a la racine.
+Detail complet et limites honnêtes : docs/HTTPS_LOCAL.md
+
+JAMAIS dans git : ce dossier ne doit contenir AUCUN fichier .pem versionne.
+La cle privee (narchi-local-key.pem) ne quitte jamais ce dossier.

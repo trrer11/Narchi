@@ -1,0 +1,19 @@
+{
+  "version": 3,
+  "threeVersion": "0.185.1",
+  "threeModule": "/vendor/three.module-0.185.1-narchi-v2.js",
+  "threeCore": "/vendor/three.core-0.185.1-narchi-v2.js",
+  "threePkgDir": "/vendor/three-pkg-0.185.1-narchi-v2/",
+  "threeShims": [
+    "build/three.webgpu.js",
+    "build/three.tsl.js",
+    "examples/jsm/controls/TransformControls.js",
+    "examples/jsm/lines/Line2.js",
+    "examples/jsm/lines/LineMaterial.js",
+    "examples/jsm/lines/LineGeometry.js",
+    "examples/jsm/lines/LineSegments2.js",
+    "examples/jsm/lines/LineSegmentsGeometry.js"
+  ],
+  "moduleSha256": "205a69303bcd78b023f1853f50645c3f5053829226d6c9514e9f4c5338251d56",
+  "coreSha256": "3718df126d69c125362a03340913204470d8c50238605150e57f808840fb7759"
+}

@@ -1,0 +1,12 @@
+.venv
+__pycache__
+*.py[cod]
+*.db
+.coverage
+.pytest_cache
+.mypy_cache
+.ruff_cache
+tests
+alembic/versions/__pycache__
+storage
+*.log

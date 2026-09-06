@@ -1,0 +1,66 @@
+{
+  "HABITATION": {
+    "accessibility": {
+      "minDoorWidth": 0.80,
+      "minHallwayWidth": 0.90,
+      "maxStepHeight": 0.17
+    },
+    "energy": {
+      "maxUValueWall": 0.24,
+      "maxUValueRoof": 0.18,
+      "minInsulationThickness": 0.12
+    },
+    "structure": {
+      "minWallThickness": 0.12,
+      "maxSlabDeflection": 0.003
+    }
+  },
+  "ERP": {
+    "accessibility": {
+      "minDoorWidth": 0.90,
+      "minHallwayWidth": 1.40,
+      "maxStepHeight": 0.15
+    },
+    "energy": {
+      "maxUValueWall": 0.20,
+      "maxUValueRoof": 0.15,
+      "minInsulationThickness": 0.16
+    },
+    "structure": {
+      "minWallThickness": 0.15,
+      "maxSlabDeflection": 0.002
+    }
+  },
+  "INDUSTRIEL": {
+    "accessibility": {
+      "minDoorWidth": 1.20,
+      "minHallwayWidth": 2.40,
+      "maxStepHeight": 0.12
+    },
+    "energy": {
+      "maxUValueWall": 0.30,
+      "maxUValueRoof": 0.25,
+      "minInsulationThickness": 0.10
+    },
+    "structure": {
+      "minWallThickness": 0.20,
+      "maxSlabDeflection": 0.005
+    }
+  },
+  "DEFAULT": {
+    "accessibility": {
+      "minDoorWidth": 0.85,
+      "minHallwayWidth": 1.00,
+      "maxStepHeight": 0.16
+    },
+    "energy": {
+      "maxUValueWall": 0.25,
+      "maxUValueRoof": 0.20,
+      "minInsulationThickness": 0.14
+    },
+    "structure": {
+      "minWallThickness": 0.15,
+      "maxSlabDeflection": 0.003
+    }
+  }
+}

@@ -1,0 +1,3 @@
+title: "JSON\nAudit-Trail"
+tooltip: "Exportiert ein prüfbares JSON Audit-Trail nach HOAI § 6 mit SHA-256 Integritäts-Hash."
+context: "zero-doc"

@@ -1,0 +1,87 @@
+{
+  "_meta": {
+    "quelle": "Destatis 61261 Baupreisindex fuer den Neubau von Wohngebaeuden",
+    "basisjahr": "2020 = 100",
+    "stichtag": "2026-Q2",
+    "letztes_update": "2026-06-15",
+    "version": "2.0.0",
+    "url_quelle": "https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Baupreise-Immobilienpreisindex"
+  },
+  "aktueller_index": {
+    "quartal": "Q2/2026",
+    "wert": 169.7,
+    "yoy_pct": 3.3,
+    "qoq_pct": 1.1,
+    "konfidenz": "veroeffentlichter Wert Destatis"
+  },
+  "historische_werte": [
+    {
+      "quartal": "Q1/2024",
+      "wert": 158.3,
+      "yoy": 2.8
+    },
+    {
+      "quartal": "Q2/2024",
+      "wert": 159.5,
+      "yoy": 2.7
+    },
+    {
+      "quartal": "Q3/2024",
+      "wert": 160.8,
+      "yoy": 3.1
+    },
+    {
+      "quartal": "Q4/2024",
+      "wert": 162.1,
+      "yoy": 3.1
+    },
+    {
+      "quartal": "Q1/2025",
+      "wert": 163.5,
+      "yoy": 3.2
+    },
+    {
+      "quartal": "Q2/2025",
+      "wert": 164.7,
+      "yoy": 3.2
+    },
+    {
+      "quartal": "Q3/2025",
+      "wert": 165.7,
+      "yoy": 3.1
+    },
+    {
+      "quartal": "Q4/2025",
+      "wert": 167.4,
+      "yoy": 3.2
+    },
+    {
+      "quartal": "Q1/2026",
+      "wert": 168.9,
+      "yoy": 3.3
+    },
+    {
+      "quartal": "Q2/2026",
+      "wert": 169.7,
+      "yoy": 3.3
+    }
+  ],
+  "gewerke_yoy_q1_2026": {
+    "rohbau": 2.7,
+    "ausbau": 3.8,
+    "betonarbeiten": 1.6,
+    "mauerarbeiten": 2.0,
+    "dachdeckung": 4.0,
+    "zimmer_holzbau": 5.5,
+    "heiz_warmwasser": 4.2,
+    "elektro_sit": 5.4,
+    "waermedaemm_verbund": 3.3,
+    "instandhaltung": 4.1
+  },
+  "forecast_12m": {
+    "methode": "OLS regression sur dernieres 8 quartiers",
+    "prognose_Q2_2027": 175.4,
+    "yoy_attendu_2027": 3.2,
+    "R2": 0.96
+  }
+}

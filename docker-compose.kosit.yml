@@ -1,0 +1,35 @@
+# §260 — KoSIT official validator as OPTIONAL sidecar.
+# Not in the default stack. No Peppol. No extra Grafana (AGPL).
+#
+# Start (Windows: 10_START_KOSIT.bat):
+#   docker compose -f docker-compose.yml -f docker-compose.kosit.yml --profile kosit up -d --build
+#
+# First start downloads JAR+config (SHA pinned). Then backend gets
+# KOSIT_SIDECAR_URL and Rechnungen can call POST .../kosit.
+
+services:
+  kosit:
+    profiles: ["kosit"]
+    build:
+      context: ./infra/kosit
+      dockerfile: Dockerfile
+    image: narchi-kosit:1.6.2
+    restart: unless-stopped
+    environment:
+      KOSIT_CACHE: /work/cache
+      KOSIT_PORT: "18080"
+    volumes:
+      - kosit_cache:/work/cache
+    expose:
+      - "18080"
+    ports:
+      - "127.0.0.1:18080:18080"
+    mem_limit: 1g
+    cpus: 1.0
+
+  backend:
+    environment:
+      KOSIT_SIDECAR_URL: ${KOSIT_SIDECAR_URL:-http://kosit:18080}
+
+volumes:
+  kosit_cache:

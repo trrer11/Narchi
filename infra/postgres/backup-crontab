@@ -1,0 +1,10 @@
+# §51 — Sauvegardes pgBackRest (stanza « narchi »).
+# Format cron.d : min h dom mon dow user commande
+#
+# Plein dimanche 03:30, incrémental lundi-samedi 03:30, dans le fuseau du
+# démon cron = variable TZ du service « db » dans docker-compose.yml
+# (Europe/Paris). Les WAL sont archivés en continu (archive_timeout=300s)
+# → restauration point-in-time possible entre deux sauvegardes.
+# Rétention : 2 sauvegardes complètes (repo1-retention-full=2).
+30 3 * * 0   postgres /usr/local/bin/narchi-backup-job.sh full >> /var/lib/pgbackrest/cron.log 2>&1
+30 3 * * 1-6 postgres /usr/local/bin/narchi-backup-job.sh incr >> /var/lib/pgbackrest/cron.log 2>&1

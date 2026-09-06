@@ -1,0 +1,15 @@
+{
+    "schema": "https://www.notinventedhere.org/api/draft-01/pyrevit/extension.json",
+    "name": "NARCHI",
+    "version": "2.4.0",
+    "type": "extension",
+    "rocket_mode_compatible": true,
+    "author": "NARCHI-Projekt",
+    "author_profile": "https://github.com/narchi-projekt/narchi",
+    "url": "https://github.com/narchi-projekt/narchi",
+    "description": "DIN 276 Kostenermittlung, CO\u2082-Bilanz, GEG-Check und F\u00f6rderprogramme direkt in Revit. Open Source MIT, offline-f\u00e4hig.",
+    "min_revit_version": "2021",
+    "max_revit_version": "2026",
+    "min_pyrevit_version": "4.8",
+    "supported_locales": ["de_DE", "en_US", "fr_FR"]
+}

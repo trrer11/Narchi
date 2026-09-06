@@ -1,0 +1,50 @@
+{
+  "_meta": {
+    "norm": "GEG 2024 (Gebäudeenergiegesetz) i.V.m. DIN V 18599 und EnEV-Vorgängernormen",
+    "stand": "GEG vom 1. Januar 2024 (Novelle Heizungsgesetz)",
+    "anwendung": "Pflicht für alle Neubauten und größere Sanierungen in Deutschland",
+    "quelle": "BMWSB, Anlage 1 (Höchstwerte U-Wert) und Anlage 2 (Referenzgebäude)"
+  },
+  "u_wert_hoechstwerte_neubau": {
+    "_einheit": "W/(m²·K) – maximaler U-Wert der jeweiligen Bauteile",
+    "_hinweis": "Werte für Wohngebäude. Nicht-Wohngebäude können abweichen.",
+    "aussenwand":              {"max": 0.24, "kg_din276": ["331","332"], "label": "Außenwände gegen Außenluft"},
+    "fenster":                 {"max": 1.30, "kg_din276": ["334"],        "label": "Fenster und Fenstertüren"},
+    "dachflaechenfenster":     {"max": 1.40, "kg_din276": ["362"],        "label": "Dachflächenfenster"},
+    "vorhangfassade":          {"max": 1.50, "kg_din276": ["337"],        "label": "Vorhangfassade"},
+    "aussentuer":              {"max": 1.80, "kg_din276": ["334"],        "label": "Außentüren"},
+    "dach":                    {"max": 0.20, "kg_din276": ["361","363"], "label": "Dach gegen Außenluft"},
+    "decke_dachgeschoss":      {"max": 0.20, "kg_din276": ["351"],        "label": "Decke zum unbeheizten DG"},
+    "bodenplatte":             {"max": 0.30, "kg_din276": ["322"],        "label": "Bodenplatte gegen Erdreich"},
+    "kellerdecke":             {"max": 0.30, "kg_din276": ["351"],        "label": "Kellerdecke gegen unbeheizt"},
+    "innenwand_unbeheizt":     {"max": 0.30, "kg_din276": ["341"],        "label": "Innenwand zu unbeheizt"}
+  },
+  "primaerenergie_anforderung": {
+    "_einheit": "kWh/(m²·a)",
+    "wohngebaeude_referenz":   55.0,
+    "nichtwohngebaeude_referenz": 75.0,
+    "_hinweis": "Maximal 0.55× des Referenzgebäudes nach Anlage 1 GEG."
+  },
+  "effizienzhaus_klassen_kfw_beg": {
+    "_hinweis": "BEG = Bundesförderung effiziente Gebäude (KfW). Klassen → Tilgungszuschuss.",
+    "EH_40_NH":   {"primaerenergie_max_pct": 40,  "tilgungszuschuss_pct": 25,
+                   "label": "Effizienzhaus 40 NH (Nachhaltigkeitsklasse)"},
+    "EH_40":      {"primaerenergie_max_pct": 40,  "tilgungszuschuss_pct": 20,
+                   "label": "Effizienzhaus 40"},
+    "EH_55":      {"primaerenergie_max_pct": 55,  "tilgungszuschuss_pct": 15,
+                   "label": "Effizienzhaus 55 (Standardneubau ab 2025)"},
+    "EH_70":      {"primaerenergie_max_pct": 70,  "tilgungszuschuss_pct": 10,
+                   "label": "Effizienzhaus 70 (nur Sanierung)"},
+    "EH_85":      {"primaerenergie_max_pct": 85,  "tilgungszuschuss_pct": 5,
+                   "label": "Effizienzhaus 85 (nur Sanierung)"}
+  },
+  "heizungsanforderungen_2024": {
+    "_hinweis": "65%-EE-Pflicht für neue Heizungen ab 1.1.2024 (Neubau, Neubaugebiete)",
+    "neue_heizungen_neubau": {
+      "erneuerbar_anteil_min": 65,
+      "erlaubte_systeme": ["Wärmepumpe", "Solarthermie", "Biomasse", "Fernwärme EE",
+                           "H2-ready Gasheizung", "Hybridheizung mit EE-Hauptanteil"]
+    },
+    "bestand_uebergangsfrist": "bis 2026/2028 je nach Kommune"
+  }
+}

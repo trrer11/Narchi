@@ -1,0 +1,320 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+@import "tailwindcss";
+
+/* Enable class-based dark mode (Tailwind 4) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-ink-950: #05070f;
+  --color-ink-900: #0a0e1b;
+  --color-ink-800: #111726;
+  --color-ink-700: #1b2335;
+
+  --color-brand-50: #fff8eb;
+  --color-brand-100: #ffedc6;
+  --color-brand-200: #ffd988;
+  --color-brand-300: #ffc14d;
+  --color-brand-400: #fbbf24;
+  --color-brand-500: #f59e0b;
+  --color-brand-600: #d97706;
+  --color-brand-700: #b45309;
+
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-slow: float 11s ease-in-out infinite;
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-marquee-slow: marquee 60s linear infinite;
+  --animate-shimmer: shimmer 2.2s linear infinite;
+  --animate-fade-up: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-pulse-ring: pulseRing 2.4s ease-out infinite;
+  --animate-draw: draw 1.6s ease forwards;
+  --animate-spin-slow: spin 9s linear infinite;
+  --animate-grid-pan: gridPan 24s linear infinite;
+  --animate-rise: rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-scan: scan 3.5s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) }
+  50% { transform: translateY(-14px) }
+}
+@keyframes marquee {
+  from { transform: translateX(0) }
+  to { transform: translateX(-50%) }
+}
+@keyframes shimmer {
+  from { background-position: -200% 0 }
+  to { background-position: 200% 0 }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px) }
+  to { opacity: 1; transform: translateY(0) }
+}
+@keyframes pulseRing {
+  0% { transform: scale(0.8); opacity: 0.7 }
+  80%, 100% { transform: scale(2.4); opacity: 0 }
+}
+@keyframes draw {
+  to { stroke-dashoffset: 0 }
+}
+@keyframes gridPan {
+  from { background-position: 0 0 }
+  to { background-position: 34px 34px }
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(40px) scale(0.98) }
+  to { opacity: 1; transform: translateY(0) scale(1) }
+}
+@keyframes scan {
+  0%, 100% { transform: translateY(-100%); opacity: 0 }
+  50% { transform: translateY(100%); opacity: 1 }
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  /* §64 — interface calibrée : le client dézoomait MANUELLEMENT a chaque
+     lancement (Ctrl+-). §65 — 90 % (« 80 % un peu petit »).
+     §69 — retour terrain : navigateur remis a 100 % comme conseille, le
+     90 % interne rendait tout « MINUSCULE » → 110 %, echelle
+     explicitement demandee par le client (« zoom 100 %, meme 110 % si
+     possible »). `zoom` reproduit le zoom navigateur uniformement
+     (textes, espacements, ancres fixed, coins arrondis), contrairement
+     a transform:scale() qui laisse des marges vides.
+     LES DEUX REGLAGES SE CUMULENT (Chrome memorise son zoom par site) :
+       navigateur 100 % (Ctrl+0)  → 110 % affiche   (REFERENCE)
+       navigateur  90 % (Ctrl+-)  →  99 %, soit 100 %
+       navigateur 110 % (Ctrl++)  → 121 %                                  */
+  zoom: 1.1;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #f6f7fb;
+  color: #0f172a;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(251, 191, 36, 0.32);
+  color: #05070f;
+}
+
+/* ---------------- Backdrops ---------------- */
+.bp-grid {
+  background-image:
+    linear-gradient(rgba(148, 197, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 197, 255, 0.07) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+.bp-grid-fine {
+  background-image:
+    linear-gradient(rgba(148, 197, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 197, 255, 0.06) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.bp-grid-animated {
+  background-image:
+    linear-gradient(rgba(148, 197, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 197, 255, 0.08) 1px, transparent 1px);
+  background-size: 34px 34px;
+  animation: var(--animate-grid-pan);
+}
+
+.radial-fade {
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 0%, #000 35%, transparent 78%);
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 0%, #000 35%, transparent 78%);
+}
+
+.radial-fade-center {
+  -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, #000 30%, transparent 80%);
+  mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, #000 30%, transparent 80%);
+}
+
+.glow-amber {
+  box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.25), 0 18px 60px -18px rgba(245, 158, 11, 0.55);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.glass-dark {
+  background: rgba(17, 23, 38, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.text-balance { text-wrap: balance; }
+.text-pretty { text-wrap: pretty; }
+
+/* ---------------- Scrollbars ---------------- */
+.scroll-thin::-webkit-scrollbar { width: 8px; height: 8px; }
+.scroll-thin::-webkit-scrollbar-track { background: transparent; }
+.scroll-thin::-webkit-scrollbar-thumb { background: rgba(100, 116, 139, 0.35); border-radius: 9999px; }
+.scroll-thin::-webkit-scrollbar-thumb:hover { background: rgba(100, 116, 139, 0.6); }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.shimmer-bg {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.45) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+}
+
+/* ---------------- Reveal-on-scroll ---------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------------- Gradient text ---------------- */
+.text-gradient {
+  background: linear-gradient(100deg, #fbbf24 0%, #f59e0b 40%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------------- Animated gradient border ---------------- */
+.gradient-border {
+  position: relative;
+  background: white;
+}
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(251,191,36,0.6), rgba(34,211,238,0.5), rgba(167,139,250,0.4));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ---------------- Hover lift ---------------- */
+.lift {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+}
+.lift:hover {
+  transform: translateY(-4px);
+}
+
+/* ---------------- Range slider ---------------- */
+input[type="range"].narchi-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 9999px;
+  background: #e2e8f0;
+  outline: none;
+}
+input[type="range"].narchi-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #f59e0b;
+  cursor: pointer;
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(245,158,11,0.5);
+}
+input[type="range"].narchi-range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #f59e0b;
+  cursor: pointer;
+  border: 3px solid white;
+}
+
+.scanline {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.scanline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(180deg, transparent, rgba(34,211,238,0.12), transparent);
+  animation: var(--animate-scan);
+}
+
+/* ===================== DARK MODE =====================
+   Global intelligent overrides — transforms the light app to dark
+   without touching each component. Targets the common patterns. */
+.dark { color-scheme: dark; }
+.dark body { background-color: #05070f; color: #cbd5e1; }
+
+/* Surfaces: cards, panels, inputs → dark glass */
+.dark .bg-white { background-color: #0d1320 !important; }
+
+.dark .bg-slate-50,
+.dark .bg-slate-50\/40,
+.dark .bg-slate-50\/50,
+.dark .bg-slate-50\/60,
+.dark .bg-slate-100 { background-color: #0a0e1b !important; }
+
+/* Text: dark text → light text */
+.dark .text-slate-900 { color: #f1f5f9 !important; }
+.dark .text-slate-800 { color: #e2e8f0 !important; }
+.dark .text-slate-700 { color: #cbd5e1 !important; }
+.dark .text-slate-600 { color: #94a3b8 !important; }
+.dark .text-slate-500 { color: #64748b !important; }
+
+/* Borders → subtle dark borders */
+.dark .border-slate-200,
+.dark .border-slate-200\/80,
+.dark .border-slate-200\/70,
+.dark .border-slate-100 { border-color: #1e293b !important; }
+.dark .border-slate-300 { border-color: #334155 !important; }
+.dark .divide-slate-100 > * { border-color: #1e293b !important; }
+.dark .divide-slate-50 > * { border-color: #0f172a !important; }
+
+/* Inputs & selects → dark */
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: #0a0e1b !important;
+  color: #e2e8f0 !important;
+  border-color: #1e293b !important;
+}
+.dark input::placeholder,
+.dark textarea::placeholder { color: #475569 !important; }
+
+/* Hover backgrounds */
+.dark .hover\:bg-slate-50:hover,
+.dark .hover\:bg-slate-100:hover,
+.dark .hover\:bg-slate-50\/60:hover { background-color: #111726 !important; }
+
+/* Code/mono elements */
+.dark code, .dark pre { color: #7dd3fc !important; }
+
+/* Rings stay visible */
+.dark .ring-slate-100 { --tw-ring-color: #1e293b !important; }
+.dark .ring-slate-200 { --tw-ring-color: #334155 !important; }
+
+/* Force keep dark sidebar elements dark (they're already dark) */
+.dark .bg-ink-950 { background-color: #05070f !important; }
+.dark .bg-ink-900 { background-color: #0a0e1b !important; }
+.dark .bg-ink-800 { background-color: #111726 !important; }
+
+/* Scrollbar dark */
+.dark .scroll-thin::-webkit-scrollbar-thumb { background: #334155 !important; }

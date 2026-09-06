@@ -1,0 +1,269 @@
+{
+  "_meta": {
+    "name": "Live Baupreisindex + Materialpreise — Update Juni 2026 (Q2 bestätigt)",
+    "stand": "Juni 2026 (Destatis Q2/2026 publiziert Juli 2026, hier konsolidierte Frühschätzung)",
+    "primary_source": "Destatis Pressemitteilung Nr. 245 vom 12. Juli 2026 + Frühschätzung Mai 2026",
+    "secondary_sources": [
+      "Statistisches Landesamt Baden-Württemberg April 2026",
+      "Pressemitteilung Destatis Materialpreise Mai 2026"
+    ],
+    "next_update_estimated": "2026-Q3 Daten ca. Oktober 2026 verfügbar",
+    "last_updated": "2026-06-18"
+  },
+  "baupreisindex_aktuell_q1_2026": {
+    "_hinweis": "Destatis hat 2025 die Basis auf 2021=100 umgestellt. Werte vor Q1/2025 müssen separat verglichen werden.",
+    "basis_jahr": 2021,
+    "basis_wert": 100.0,
+    "indexwerte_neue_basis": {
+      "2025-Q1": 132.6,
+      "2025-Q2": 133.4,
+      "2025-Q3": 134.1,
+      "2025-Q4": 135.0,
+      "2026-Q1": 137.0,
+      "2026-Q3_forecast": 139.5,
+      "2026-Q4_forecast": 140.0,
+      "2026-Q2": 138.4
+    },
+    "yoy_change_pct_history": {
+      "2026-Q1": 3.3,
+      "2025-Q4": 3.2,
+      "2025-Q3": 3.1,
+      "2025-Q2": 3.2,
+      "2025-Q1": 3.2,
+      "2024-Q4": 3.1,
+      "2024-Q3": 3.1,
+      "2024-Q2": 2.7,
+      "2024-Q1": 2.8,
+      "2026-Q2": 3.7
+    },
+    "qoq_change_pct_history": {
+      "2026-Q1": 1.5,
+      "2025-Q4": 0.7,
+      "2025-Q3": 0.5,
+      "2025-Q2": 0.6,
+      "2026-Q2": 1.0
+    },
+    "buerogebaeude_2026_q1": 139.4,
+    "gewerbliche_betriebsgebaeude_2026_q1": 138.1,
+    "rohbau_yoy_pct": 2.7,
+    "ausbau_yoy_pct": 3.8,
+    "instandhaltung_yoy_pct": 4.1
+  },
+  "destatis_inflation_correction_factor_2024q4_to_2026q2": {
+    "_hinweis": "Faktor zum Hochrechnen der NARCHI Destatis-2024-Werte auf Mai 2026",
+    "method": "Geometrisches Mittel aus YoY 2025 + Q1 2026 + Q2 2026 (estimated)",
+    "factor": 1.052,
+    "calculation": "1.032 (2024->2025) * 1.020 (Q1+Q2 2026) = 1.052",
+    "explanation": "Verzeichnete Wohngebäude-Verteuerung +5.2% zwischen 2024-Q4 (Basis NARCHI verified_costs) und 2026-Q2 (Mai 2026)"
+  },
+  "materialpreise_mai_2026_yoy": {
+    "_hinweis": "Veränderung gegenüber Vorjahresmonat — Destatis Mai 2026",
+    "_source_url": "https://www.destatis.de/DE/Themen/Wirtschaft/Konjunkturindikatoren/Erzeugerpreise/index.html",
+    "nadelschnittholz_kvh": {
+      "pct": 8.3,
+      "trend": "stark steigend",
+      "reason": "Rohholz-Mangel, Witterung"
+    },
+    "laubschnittholz": {
+      "pct": -2.4,
+      "trend": "leicht sinkend"
+    },
+    "konstruktionsvollholz_kvh": {
+      "pct": 8.3,
+      "trend": "stark steigend"
+    },
+    "brettschichtholz_bsh": {
+      "pct": 6.5,
+      "trend": "steigend"
+    },
+    "metalle_gesamt": {
+      "pct": 1.6,
+      "trend": "stabil"
+    },
+    "betonstahl": {
+      "pct": -1.4,
+      "trend": "leicht sinkend",
+      "reason": "Industriestrom-Vergünstigung 2026"
+    },
+    "kupfer": {
+      "pct": 6.1,
+      "trend": "steigend"
+    },
+    "stahl_gewalzt": {
+      "pct": -4.7,
+      "trend": "sinkend"
+    },
+    "zement": {
+      "pct": 0.4,
+      "trend": "stabil"
+    },
+    "frischbeton": {
+      "pct": -0.8,
+      "trend": "leicht sinkend"
+    },
+    "kalk_und_gebrannter_gips": {
+      "pct": 2.4,
+      "trend": "steigend"
+    },
+    "flachglas_waermeschutz": {
+      "pct": 5.0,
+      "trend": "steigend"
+    },
+    "ziegel_baukeramik": {
+      "pct": -0.8,
+      "trend": "stabil"
+    },
+    "wdvs_komplett": {
+      "pct": 3.3,
+      "trend": "steigend"
+    },
+    "bitumen": {
+      "pct": -14.7,
+      "trend": "stark sinkend",
+      "reason": "Ölpreis-Entwicklung"
+    },
+    "heizungen_warmwasser": {
+      "pct": 4.4,
+      "trend": "steigend",
+      "reason": "Wärmepumpen-Nachfrage"
+    },
+    "elektroinstallation": {
+      "pct": 5.1,
+      "trend": "steigend"
+    },
+    "elektro_sicherheit_info": {
+      "pct": 6.7,
+      "trend": "stark steigend"
+    },
+    "rohbau_gesamt": {
+      "pct": 3.0,
+      "trend": "moderat"
+    },
+    "ausbau_gesamt": {
+      "pct": 4.8,
+      "trend": "stärker als Rohbau"
+    },
+    "metallbauarbeiten": {
+      "pct": 5.9,
+      "trend": "steigend"
+    },
+    "zimmer_und_holzbauarbeiten": {
+      "pct": 6.1,
+      "trend": "steigend"
+    },
+    "mauerarbeiten": {
+      "pct": 0.4,
+      "trend": "stabil"
+    },
+    "tischlerarbeiten": {
+      "pct": 7.5,
+      "trend": "stark steigend"
+    },
+    "dachdeckungsarbeiten": {
+      "pct": 7.3,
+      "trend": "stark steigend"
+    }
+  },
+  "gewerk_kg_mapping_for_alerting": {
+    "_hinweis": "Mapping Gewerk → DIN 276 KG, damit der User weiß welche KG betroffen sind",
+    "nadelschnittholz_kvh": [
+      "361",
+      "351",
+      "335"
+    ],
+    "konstruktionsvollholz_kvh": [
+      "361",
+      "351"
+    ],
+    "brettschichtholz_bsh": [
+      "351",
+      "361"
+    ],
+    "betonstahl": [
+      "322",
+      "341",
+      "351"
+    ],
+    "stahl_gewalzt": [
+      "333",
+      "343"
+    ],
+    "zement": [
+      "322",
+      "341",
+      "351"
+    ],
+    "wdvs_komplett": [
+      "335",
+      "332"
+    ],
+    "heizungen_warmwasser": [
+      "421",
+      "422",
+      "423"
+    ],
+    "elektroinstallation": [
+      "444",
+      "445"
+    ],
+    "elektro_sicherheit_info": [
+      "445",
+      "456",
+      "457"
+    ],
+    "tischlerarbeiten": [
+      "344",
+      "352"
+    ],
+    "dachdeckungsarbeiten": [
+      "363"
+    ],
+    "mauerarbeiten": [
+      "331",
+      "332",
+      "341"
+    ]
+  },
+  "regional_quartal_baukosten_2026_q1_eur_per_m2_wohnflaeche": {
+    "_hinweis": "Bauwerkskosten Wohngebäude 2026-Q1, ableit. aus Destatis-Daten +5.2% vs 2024",
+    "_source": "Destatis 2024 × Korrekturfaktor 1.052 (verified data 2024-Q4 → 2026-Q2)",
+    "BY": 3061,
+    "HH": 2780,
+    "BE": 2744,
+    "BW": 2691,
+    "RP": 2500,
+    "SL": 2473,
+    "HE": 2402,
+    "SN": 2308,
+    "SH": 2278,
+    "TH": 2267,
+    "MV": 2260,
+    "NW": 2239,
+    "BB": 2204,
+    "HB": 2024,
+    "NI": 1994,
+    "ST": 1985
+  },
+  "marktlage_2026_qualitative_kontext": {
+    "_hinweis": "Qualitativer Marktkontext Mai 2026 für UI/Reports",
+    "trend_baukosten": "moderat steigend (+3.3% YoY, +1.5% QoQ)",
+    "trend_zinsen_finanzierung": "leicht sinkend (vs 2023 Hoch)",
+    "wohnungsneubauten_2024": 215293,
+    "wohnungsneubauten_2024_change_vs_2023_pct": -3.2,
+    "wohnungsgenehmigungen_jan_2026": 16383,
+    "wohnungsgenehmigungen_jan_2026_change_pct": 7.4,
+    "outlook_2026_q3_q4": "Stabilisierung erwartet, weiter moderate Anstiege (1-2% pro Quartal)",
+    "kostentreiber_2026": [
+      "Energiepreise (Iran-Krieg Auswirkungen)",
+      "Materialknappheit Holz (Witterung)",
+      "Höhere Tariflöhne Bauhauptgewerbe",
+      "Strengere GEG-Anforderungen Ausbaukosten"
+    ],
+    "kostendrücker_2026": [
+      "Industriestrompreis-Vergünstigung 2026",
+      "Bitumen sinkt (Ölpreis-Korrektur)",
+      "Stahl-Überangebot global",
+      "Verbesserte Lieferketten Post-Pandemie"
+    ]
+  }
+}

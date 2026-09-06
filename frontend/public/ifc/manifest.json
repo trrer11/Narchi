@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-08-06T10:58:11.857Z",
+  "engine": "@thatopen/components",
+  "webIfcSource": "../node_modules/web-ifc",
+  "fragmentsWorkerSource": "../node_modules/@thatopen/fragments/dist/Worker/worker.mjs",
+  "fragmentsWorkerSha256": "acc0cf3f5e2a70ccf769c9f6a239c81ab33c86a47d0a1e0827d44cb7a9e29a50",
+  "fragmentsWorkerBytes": 3477871,
+  "files": [
+    "fragments-worker.mjs",
+    "manifest.json",
+    "web-ifc-api.js",
+    "web-ifc-mt.wasm",
+    "web-ifc.wasm"
+  ]
+}

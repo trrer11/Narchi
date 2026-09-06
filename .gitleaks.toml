@@ -1,0 +1,25 @@
+# §141 — Gitleaks (MIT) : verrouille « jamais de secret versionné ».
+#
+# Ce fichier est la config de gitleaks (v8.30.1). Il étend les règles par
+# défaut (embedded) et n'ajoute QUE des allowlists DOCUMENTÉES — chaque
+# faux positif est expliqué, jamais masqué :
+#
+#   1. loadtest/locustfile.py — le mot de passe « charge-test-pass-123456 »
+#      est un mot de passe de TEST de charge (jamais un vrai secret ; il
+#      n'ouvre aucun accès réel, le compte est créé au vol par /register).
+#   2. regex « byte_count=16 » — dans app/api/ifc_routes.py, c'est un
+#      ARGUMENT de fonction (le nombre d'octets à lire pour la signature
+#      STEP/IFC), pas une clé API — faux positif du pattern generic-api-key.
+#
+# Rejouable : bash scripts/verifier-gitleaks.sh (SHA-256 épinglé, exit 1 si
+# un secret réel apparaît). Intégré à la CI (workflow security.yml, job
+# gitleaks) — PRÉPARÉ, non exécuté depuis GitHub (le sandbox ne déclenche
+# pas de run distant).
+
+[allowlist]
+paths = [
+  '''loadtest/locustfile\.py''',
+]
+regexes = [
+  '''byte_count=16''',
+]

@@ -1,0 +1,75 @@
+{
+  "annotations": {"list": []},
+  "editable": false,
+  "graphTooltip": 1,
+  "panels": [
+    {
+      "type": "stat",
+      "title": "Requêtes / seconde",
+      "id": 1,
+      "gridPos": {"h": 8, "w": 6, "x": 0, "y": 0},
+      "targets": [{"refId": "A", "expr": "sum(rate(narchi_http_requests_total[5m]))"}]
+    },
+    {
+      "type": "stat",
+      "title": "Erreurs HTTP 5xx / seconde",
+      "id": 2,
+      "gridPos": {"h": 8, "w": 6, "x": 6, "y": 0},
+      "targets": [{"refId": "A", "expr": "sum(rate(narchi_http_requests_total{status=~\"5..\"}[5m]))"}]
+    },
+    {
+      "type": "stat",
+      "title": "Latence P99",
+      "id": 3,
+      "gridPos": {"h": 8, "w": 6, "x": 12, "y": 0},
+      "fieldConfig": {"defaults": {"unit": "s"}},
+      "targets": [{"refId": "A", "expr": "histogram_quantile(0.99, sum by (le) (rate(narchi_http_request_duration_seconds_bucket[5m])))"}]
+    },
+    {
+      "type": "stat",
+      "title": "Requêtes en cours",
+      "id": 4,
+      "gridPos": {"h": 8, "w": 6, "x": 18, "y": 0},
+      "targets": [{"refId": "A", "expr": "sum(narchi_http_requests_in_progress)"}]
+    },
+    {
+      "type": "timeseries",
+      "title": "Latence P50 / P95 / P99 par route",
+      "id": 5,
+      "gridPos": {"h": 10, "w": 12, "x": 0, "y": 8},
+      "fieldConfig": {"defaults": {"unit": "s"}},
+      "targets": [
+        {"refId": "A", "legendFormat": "P50 {{route}}", "expr": "histogram_quantile(0.50, sum by (le, route) (rate(narchi_http_request_duration_seconds_bucket[5m])))"},
+        {"refId": "B", "legendFormat": "P95 {{route}}", "expr": "histogram_quantile(0.95, sum by (le, route) (rate(narchi_http_request_duration_seconds_bucket[5m])))"},
+        {"refId": "C", "legendFormat": "P99 {{route}}", "expr": "histogram_quantile(0.99, sum by (le, route) (rate(narchi_http_request_duration_seconds_bucket[5m])))"}
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Débit et erreurs par statut",
+      "id": 6,
+      "gridPos": {"h": 10, "w": 12, "x": 12, "y": 8},
+      "targets": [{"refId": "A", "legendFormat": "HTTP {{status}}", "expr": "sum by (status) (rate(narchi_http_requests_total[5m]))"}]
+    },
+    {
+      "type": "timeseries",
+      "title": "Durée P95 des tâches IFC / PDF",
+      "id": 7,
+      "gridPos": {"h": 9, "w": 24, "x": 0, "y": 18},
+      "fieldConfig": {"defaults": {"unit": "s"}},
+      "targets": [
+        {"refId": "A", "legendFormat": "IFC {{status}}", "expr": "histogram_quantile(0.95, sum by (le, status) (rate(narchi_ifc_task_duration_seconds_bucket[15m])))"},
+        {"refId": "B", "legendFormat": "PDF {{status}}", "expr": "histogram_quantile(0.95, sum by (le, status) (rate(narchi_pdf_task_duration_seconds_bucket[15m])))"}
+      ]
+    }
+  ],
+  "refresh": "15s",
+  "schemaVersion": 41,
+  "tags": ["narchi", "bim", "operations"],
+  "templating": {"list": []},
+  "time": {"from": "now-6h", "to": "now"},
+  "timezone": "browser",
+  "title": "NARCHI V5 — Operations",
+  "uid": "narchi-operations",
+  "version": 1
+}

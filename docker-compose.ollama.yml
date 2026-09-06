@@ -1,0 +1,19 @@
+# §244 — petit LLM pour bureau 8–16 Go. Pas dans le stack par défaut.
+# 8 Go :  docker compose -f docker-compose.yml -f docker-compose.ollama.yml --profile ollama up -d
+#         puis dans le conteneur : ollama pull llama3.2:3b
+# 16 Go : LLM_MODEL=llama3.1:8b  et ollama pull llama3.1:8b
+# RAM : 4 Go reservés au modèle 3B (Q4). Cloud reste AUS.
+services:
+  ollama:
+    profiles: ["ollama"]
+    image: ollama/ollama:latest
+    restart: unless-stopped
+    expose: ["11434"]
+    environment:
+      OLLAMA_KEEP_ALIVE: "10m"
+    volumes:
+      - ollama_models:/root/.ollama
+    mem_limit: 4g
+
+volumes:
+  ollama_models:

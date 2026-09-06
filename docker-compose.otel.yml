@@ -1,0 +1,18 @@
+# §246 — OpenTelemetry Collector OPTIONAL (Apache-2.0).
+# Kein Grafana, kein Loki (AGPL). Export: OTLP oder Prometheus scrape.
+#
+#   docker compose -f docker-compose.yml -f docker-compose.otel.yml --profile otel up -d
+
+services:
+  otel-collector:
+    profiles: ["otel"]
+    image: otel/opentelemetry-collector-contrib:0.128.0
+    restart: unless-stopped
+    command: ["--config=/etc/otelcol/config.yaml"]
+    volumes:
+      - ./infra/otel/collector.yaml:/etc/otelcol/config.yaml:ro
+    expose:
+      - "4317"
+      - "4318"
+    mem_limit: 256m
+    cpus: 0.5
